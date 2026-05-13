@@ -1,275 +1,354 @@
-# 🏦 Investra - Banking & Investment Platform
+# 🏦 INVANKRI - Investasi & BANK NKRI
 
-Platform perbankan dan investasi modern dengan fitur trading saham dan cryptocurrency.
+![Version](https://img.shields.io/badge/version-2.0-blue.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-![Version](https://img.shields.io/badge/version-2.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Platform](https://img.shields.io/badge/platform-Web-orange)
+**Platform Perbankan, Investasi Saham & Cryptocurrency Modern**
 
-## 🚀 Cara Menjalankan
+---
 
-### Metode 1: Silent Mode (Direkomendasikan) ⭐
+## 🎯 Tentang INVANKRI
+
+**INVANKRI** (Investasi & BANK NKRI) adalah platform perbankan dan investasi modern yang menggabungkan fitur banking, trading saham, dan cryptocurrency dalam satu aplikasi web yang powerful dan user-friendly.
+
+### 🌟 Fitur Utama
+
+#### 💰 Banking
+- ✅ Setor & Tarik Saldo
+- ✅ Riwayat Transaksi Lengkap
+- ✅ Animasi Smooth dengan Spring Physics
+- ✅ Dark Mode Support
+- ✅ Multi-User System
+
+#### 📈 Investasi Saham
+- ✅ 33+ Saham Indonesia (BBCA, BBRI, TLKM, dll)
+- ✅ Real-time Price Updates
+- ✅ Portfolio Management
+- ✅ Profit/Loss Tracking
+- ✅ Live Chart dengan TradingView Style
+
+#### ₿ Cryptocurrency
+- ✅ 28+ Crypto (Bitcoin, Ethereum, Solana, dll)
+- ✅ Real-time Price Updates
+- ✅ Crypto Portfolio Management
+- ✅ Multiple Categories (DeFi, NFT, Meme Coins)
+- ✅ Live Price Charts
+
+#### ⭐ Priority Account
+- ✅ Auto-upgrade saat deposit >= Rp 100 Miliar
+- ✅ Badge Gold Eksklusif
+- ✅ Benefit Khusus Priority
+- ✅ Auto-refresh Profile Page
+
+#### 💾 Database & Persistence
+- ✅ Data tersimpan permanen (localStorage)
+- ✅ Auto-login dengan "Remember Me"
+- ✅ Multiple users dengan data terpisah
+- ✅ Tidak hilang saat refresh/tutup browser
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/fachrieradiyan/WEB-PERBANKAN.git
+cd WEB-PERBANKAN
 ```
-Double-click: run-silent.vbs
+
+### 2. Buka Aplikasi
+```bash
+# Buka index.html di browser
+# Atau gunakan live server
 ```
-- ✅ Langsung buka di browser
-- ✅ Tidak ada command prompt window
-- ✅ Paling cepat dan bersih
 
-### Metode 2: Batch File
-```
-Double-click: run.bat
-```
-- ✅ Menampilkan informasi startup
-- ✅ Command prompt window muncul
+### 3. Login
+**Demo VIP Account:**
+- Username: `dirut`
+- Password: `dirut2026`
 
-### Metode 3: PowerShell
-```
-Klik kanan run.ps1 → Run with PowerShell
-```
-- ✅ Tampilan berwarna dan modern
-- ✅ Informasi lengkap
+**Atau Register Akun Baru:**
+- Klik tab "Daftar"
+- Isi username & password
+- Login dan mulai investasi!
 
-### Metode 4: Manual
-```
-Double-click: index.html
-```
-- ✅ Buka langsung di browser default
+---
 
-## ✨ Fitur Utama
+## 📊 Teknologi
 
-### 💰 Perbankan
-- Setor dan tarik saldo
-- Riwayat transaksi lengkap
-- Format mata uang Indonesia (Rp)
-- Konversi angka ke terbilang
-- Limit saldo untuk akun regular (100 miliar)
+### Frontend
+- **HTML5** - Struktur aplikasi
+- **Tailwind CSS** - Styling modern & responsive
+- **JavaScript (ES6+)** - Logic & interactivity
+- **Spring Physics Engine** - Smooth animations
 
-### 📈 Trading Saham
-- **35+ saham Indonesia** dari berbagai sektor:
-  - 🏦 Perbankan: BBCA, BBRI, BMRI, BBNI, BBTN
-  - 📱 Telekomunikasi: TLKM, EXCL, ISAT
-  - 🚗 Otomotif: ASII, AUTO, GGRM
-  - 🛒 Konsumen: UNVR, ICBP, INDF, KLBF, MYOR
-  - 💻 Teknologi: GOTO, BUKA, EMTK
-  - ⛏️ Pertambangan: ANTM, INCO, ADRO, PTBA, ITMG, MDKA
-  - 🏠 Properti: BSDE, SMRA, WIKA, PTPP
-  - ⚡ Energi: PGAS, MEDC
-  - 🛍️ Retail: ACES, MAPI
-- Update harga real-time (setiap 2 detik)
-- Fluktuasi harga ±3%
-- Profit/Loss tracking otomatis
-- Portfolio management
+### Storage
+- **localStorage** - Client-side database
+- **Session Management** - Auto-login system
 
-### 🪙 Trading Cryptocurrency
-- **28+ cryptocurrency** dari berbagai kategori:
-  - 🟠 Layer 1: BTC, ETH, SOL, ADA, AVAX, NEAR, TRX, TON
-  - 🟣 Layer 2: MATIC, ARB, OP
-  - 🔗 Layer 0: DOT, ATOM
-  - 💚 DeFi: UNI, LINK, AAVE, MKR
-  - 🟡 Exchange: BNB
-  - 💵 Stablecoin: USDT, USDC
-  - 🐕 Meme: DOGE, SHIB, PEPE
-  - 🌐 Metaverse: SAND, MANA
-  - 🎮 Gaming: AXS
-  - 💧 Payment: XRP, LTC
-- Update harga real-time (setiap 1.5 detik)
-- Fluktuasi harga ±5% (lebih volatile)
-- Support desimal hingga 8 digit
-- Portfolio tracking dengan profit/loss
+### Libraries
+- **Font Awesome** - Icons
+- **Tailwind CSS CDN** - Styling framework
 
-### 👤 Profil & Portfolio
-- Total kekayaan bersih (Net Worth)
-- Statistik perbankan lengkap
-- Statistik investasi
-- Alokasi aset (Kas, Saham, Crypto)
-- Edit nama tampilan
-- Rincian kepemilikan saham & crypto
+---
 
-### 🎨 Fitur Tambahan
-- 🌙 Dark mode dengan toggle
-- 👥 Multi-user support
-- 👑 Akun VIP dengan unlimited balance
-- 💾 Data tersimpan di localStorage
-- 📱 Responsive design
-- 🎯 Real-time price updates
-- 📊 Transaction history
+## 🎨 Fitur Animasi
 
-## 🔐 Akun Demo
+### Advanced Smooth Animation System
+- ✅ Spring Physics Engine
+- ✅ 60 FPS Performance
+- ✅ GPU Acceleration
+- ✅ 7+ Easing Functions
+- ✅ Customizable Parameters
 
-### Regular User
-Buat akun baru di halaman register:
-- Username: minimal 3 karakter
-- Password: minimal 6 karakter
-- Balance limit: 100 miliar rupiah
+**Animasi untuk:**
+- Saldo (Balance)
+- Total Setor (Total Deposit)
+- Total Tarik (Total Withdraw)
+- Harga Saham (Stock Prices)
+- Harga Crypto (Crypto Prices)
 
-### VIP Account
-```
-Username: dirut
-Password: dirut2026
-```
-- Unlimited balance
-- Special VIP badge 👑
-- Nama: Direktur Utama
+---
+
+## 📱 Screenshots
+
+### Dashboard
+![Dashboard](https://via.placeholder.com/800x400?text=INVANKRI+Dashboard)
+
+### Saham Trading
+![Stocks](https://via.placeholder.com/800x400?text=Saham+Trading)
+
+### Cryptocurrency
+![Crypto](https://via.placeholder.com/800x400?text=Cryptocurrency)
+
+### Priority Account
+![Priority](https://via.placeholder.com/800x400?text=Priority+Account)
+
+---
+
+## 📖 Dokumentasi
+
+### Core Documentation
+- 📄 [DATABASE_PERSISTENCE.md](DATABASE_PERSISTENCE.md) - Sistem database & auto-login
+- 📄 [PRIORITY_PROFILE_UPDATE.md](PRIORITY_PROFILE_UPDATE.md) - Fitur Priority Account
+- 📄 [RINGKASAN_FITUR_PRIORITY.md](RINGKASAN_FITUR_PRIORITY.md) - Ringkasan Priority
+- 📄 [INDEX_PRIORITY_DOCS.md](INDEX_PRIORITY_DOCS.md) - Index dokumentasi Priority
+
+### Animation Documentation
+- 📄 [INDEX_ANIMASI.md](INDEX_ANIMASI.md) - Index sistem animasi
+- 📄 [ANIMATION_SUMMARY.md](ANIMATION_SUMMARY.md) - Ringkasan animasi
+- 📄 [ADVANCED_ANIMATION_GUIDE.md](ADVANCED_ANIMATION_GUIDE.md) - Panduan advanced
+
+### Testing Guides
+- 🧪 [TEST_PROFILE_AUTO_UPDATE.html](TEST_PROFILE_AUTO_UPDATE.html) - Test Priority feature
+- 🧪 [TEST_DATABASE_PERSISTENCE.html](TEST_DATABASE_PERSISTENCE.html) - Test database
+- 🧪 [test-animation-system.html](test-animation-system.html) - Test animasi
+
+---
+
+## 🎯 Cara Mendapatkan Priority Account
+
+### Syarat:
+**Total Setoran >= Rp 100.000.000.000 (100 Miliar)**
+
+### Benefit Priority:
+1. ⭐ **Badge Gold** - Badge eksklusif berwarna gold
+2. 🎯 **Prioritas CS** - Layanan customer service prioritas
+3. 💎 **Fitur Eksklusif** - Akses fitur khusus Priority
+4. 🚀 **Limit Tinggi** - Limit transaksi lebih tinggi
+
+### Cara Upgrade:
+1. Login ke akun Anda
+2. Setor uang hingga total >= Rp 100 Miliar
+3. Otomatis upgrade ke Priority! 🎉
+4. Badge Gold muncul di header & profil
+5. Section Priority Account Info muncul di profil
+
+---
+
+## 🔐 Keamanan
+
+### Current Implementation:
+- ✅ Password validation (min 6 karakter)
+- ✅ Username validation (min 3 karakter)
+- ✅ Session management
+- ✅ Data isolation per user
+- ✅ Clean logout
+
+### ⚠️ Catatan:
+> Ini adalah aplikasi demo/prototype. Untuk production:
+> - Gunakan backend server (Node.js, PHP, dll)
+> - Encrypt password dengan bcrypt
+> - Implementasi JWT authentication
+> - Gunakan database (MySQL, MongoDB, dll)
+> - Setup HTTPS/SSL
+
+---
+
+## 🌐 Browser Support
+
+| Browser | Version | Status |
+|---------|---------|--------|
+| Chrome | Latest | ✅ Supported |
+| Firefox | Latest | ✅ Supported |
+| Safari | Latest | ✅ Supported |
+| Edge | Latest | ✅ Supported |
+| Opera | Latest | ✅ Supported |
+
+---
 
 ## 📊 Statistik
 
-- **35 Saham** dari 9 sektor berbeda
-- **28 Cryptocurrency** dari 10 kategori
-- **Real-time updates** setiap 1.5-2 detik
-- **Multi-currency** support (Rupiah)
-- **Unlimited transactions** per user
+### Code Stats:
+- **Total Files:** 50+
+- **Total Lines:** 19,910+
+- **JavaScript:** ~2,500 lines
+- **HTML:** ~1,000 lines
+- **Documentation:** 9 files
 
-## 🛠️ Teknologi
-
-- HTML5
-- JavaScript (Vanilla)
-- Tailwind CSS
-- Font Awesome Icons
-- LocalStorage API
-
-## 📁 Struktur File
-
-```
-├── index.html              # File HTML utama
-├── main.js                 # JavaScript logic
-├── run.bat                 # Windows batch launcher
-├── run.ps1                 # PowerShell launcher
-├── run-silent.vbs          # Silent VBScript launcher
-├── START_HERE.txt          # Quick start guide
-└── README.md               # Dokumentasi ini
-```
-
-## 💡 Tips Penggunaan
-
-1. **Gunakan run-silent.vbs** untuk pengalaman terbaik
-2. **Bookmark aplikasi** di browser untuk akses cepat
-3. **Aktifkan dark mode** untuk kenyamanan mata
-4. **Cek halaman Profil** untuk melihat total portfolio
-5. **Diversifikasi investasi** antara saham dan crypto
-
-## ⚠️ Catatan Penting
-
-- Aplikasi ini berjalan **offline** di browser
-- Data disimpan di **localStorage browser**
-- Tidak memerlukan **koneksi internet**
-- Tidak memerlukan **instalasi server**
-- Harga saham & crypto adalah **simulasi**
-- Untuk **edukasi** dan **demo** purposes
-
-## 🎨 NEW: Advanced Smooth Animation System v2.0
-
-Sistem animasi yang **lebih smooth dan natural** dengan teknologi terbaru!
-
-### ✨ Features
-- ✅ **Spring Physics Engine** - Animasi seperti pegas, terasa natural
-- ✅ **60 FPS Consistent** - Performa maksimal dengan GPU acceleration
-- ✅ **7+ Advanced Easing** - Lebih banyak pilihan animasi
-- ✅ **3D Effects & Parallax** - Efek visual yang memukau
-- ✅ **React & Next.js Ready** - Siap pakai untuk modern frameworks
-
-### 📖 Documentation
-- **[INDEX_ANIMASI.md](INDEX_ANIMASI.md)** - Panduan navigasi lengkap
-- **[QUICK_START_ID.md](QUICK_START_ID.md)** ⭐ - Quick start 5 menit (Bahasa Indonesia)
-- **[ADVANCED_ANIMATION_GUIDE.md](ADVANCED_ANIMATION_GUIDE.md)** - Deep dive lengkap
-
-### 🎨 Demo Files
-- **[demo-advanced-animation.html](demo-advanced-animation.html)** ⭐ - Demo lengkap dengan Spring Physics
-- **[demo-smooth-animation.html](demo-smooth-animation.html)** - Demo basic
-
-### 💻 Quick Example
-
-```javascript
-// Buat animator dengan Spring Physics
-const animator = new AdvancedSmoothAnimator(element, {
-    useSpring: true,
-    springConfig: {
-        stiffness: 170,
-        damping: 26,
-        mass: 1
-    },
-    decimals: 0,
-    prefix: 'Rp ',
-    useGlow: true
-});
-
-// Animate ke nilai baru
-animator.animateTo(5000000);
-```
-
-**Lihat dokumentasi lengkap:** [INDEX_ANIMASI.md](INDEX_ANIMASI.md)
+### Features:
+- **Saham:** 33 emiten
+- **Crypto:** 28 coins
+- **Animations:** 7+ easing functions
+- **Users:** Unlimited (localStorage)
 
 ---
 
-## ⭐ NEW: Priority Account (Gold Badge)
+## 🛠️ Development
 
-Fitur upgrade otomatis dari akun regular ke akun **Priority** dengan badge **GOLD** eksklusif!
-
-### 🎯 Cara Mendapatkan
+### File Structure:
 ```
-Total Setoran ≥ Rp 100,000,000,000 (100 Miliar)
+INVANKRI/
+├── index.html                          # Main application
+├── main.js                             # Core logic
+├── main-with-animation.js              # Animation version
+│
+├── js/
+│   ├── advanced-smooth-animation.js    # Animation engine
+│   ├── advanced-animations.css         # Animation styles
+│   ├── ReactAdvancedAnimation.jsx      # React components
+│   ├── NextJsAdvancedExample.tsx       # Next.js example
+│   └── ...
+│
+├── docs/
+│   ├── DATABASE_PERSISTENCE.md
+│   ├── PRIORITY_PROFILE_UPDATE.md
+│   ├── INDEX_ANIMASI.md
+│   └── ...
+│
+└── tests/
+    ├── TEST_PROFILE_AUTO_UPDATE.html
+    ├── TEST_DATABASE_PERSISTENCE.html
+    └── test-animation-system.html
 ```
 
-### ✨ Keuntungan Priority
-- ⭐ **Badge Gold** dengan gradient & glow effect
-- 🎯 **Prioritas layanan** customer service
-- 💎 **Akses fitur eksklusif** (coming soon)
-- 🚀 **Limit transaksi** lebih tinggi
-- 🏆 **Status permanen** - tidak hilang selamanya!
+### Local Development:
+```bash
+# Clone repository
+git clone https://github.com/fachrieradiyan/WEB-PERBANKAN.git
 
-### 📖 Documentation
-- **[FITUR_PRIORITY_ACCOUNT.md](FITUR_PRIORITY_ACCOUNT.md)** - Penjelasan lengkap
-- **[CARA_DAPAT_PRIORITY.txt](CARA_DAPAT_PRIORITY.txt)** ⭐ - Quick guide
-
-### 🎊 Proses Upgrade
-1. Setor uang hingga total Rp 100 miliar
-2. Notifikasi upgrade muncul otomatis
-3. Badge Gold langsung aktif
-4. Status tersimpan permanen
-
-**Coba sekarang dan raih badge Priority Anda!** ⭐
+# Open in browser
+# Atau gunakan live server (VS Code extension)
+```
 
 ---
 
-## 🎯 Roadmap
+## 🤝 Contributing
 
-- [x] Advanced Smooth Animation System ✨ NEW!
-- [x] Priority Account (Gold Badge) ⭐ NEW!
-- [ ] Export data ke CSV/Excel
-- [ ] Grafik harga historis
-- [ ] Notifikasi price alert
-- [ ] Trading bot automation
-- [ ] Multi-language support
-- [ ] Mobile app version
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📝 Changelog
+### Steps:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Version 2.0 (Current)
-- ✅ Added 35+ Indonesian stocks
-- ✅ Added 28+ cryptocurrencies
-- ✅ Profile page with portfolio summary
-- ✅ Edit display name feature
-- ✅ Auto-run scripts (bat, ps1, vbs)
-- ✅ Enhanced UI/UX
-- ✅ Dark mode support
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Fachrie Radiyan**
+- GitHub: [@fachrieradiyan](https://github.com/fachrieradiyan)
+- Repository: [WEB-PERBANKAN](https://github.com/fachrieradiyan/WEB-PERBANKAN)
+
+---
+
+## 🙏 Acknowledgments
+
+- **Tailwind CSS** - For the amazing CSS framework
+- **Font Awesome** - For the beautiful icons
+- **Spring Physics** - For smooth animations
+- **localStorage API** - For client-side storage
+
+---
+
+## 📞 Support
+
+Jika ada pertanyaan atau issue:
+1. Buka [Issues](https://github.com/fachrieradiyan/WEB-PERBANKAN/issues)
+2. Baca dokumentasi di folder `docs/`
+3. Check testing guides di folder `tests/`
+
+---
+
+## 🎉 Changelog
+
+### Version 2.0 (Latest)
+- ✅ Database persistence dengan localStorage
+- ✅ Auto-login dengan "Remember Me"
+- ✅ Priority Account dengan auto-upgrade
+- ✅ Auto-refresh profile page
+- ✅ Complete user data structure
+- ✅ Last login tracking
 
 ### Version 1.0
 - ✅ Basic banking features
-- ✅ Stock trading (12 stocks)
-- ✅ Crypto trading (8 coins)
-- ✅ Multi-user support
-- ✅ VIP account system
-
-## 📄 License
-
-MIT License - Feel free to use and modify
-
-## 👨‍💻 Developer
-
-Created with ❤️ for learning and demonstration purposes
+- ✅ Stock trading
+- ✅ Cryptocurrency trading
+- ✅ Smooth animations
+- ✅ Dark mode
+- ✅ Responsive design
 
 ---
 
-**© 2026 Investra - Banking & Investment Platform**
+## 🚀 Roadmap
 
-*Selamat berinvestasi! 🚀*
+### Future Features:
+- [ ] Backend API (Node.js/PHP)
+- [ ] Real database (MySQL/MongoDB)
+- [ ] Real-time WebSocket updates
+- [ ] Mobile app (React Native)
+- [ ] Email notifications
+- [ ] 2FA Authentication
+- [ ] KYC Verification
+- [ ] Payment gateway integration
+
+---
+
+## ⭐ Star History
+
+If you like this project, please give it a ⭐ on GitHub!
+
+---
+
+<div align="center">
+
+**🏦 INVANKRI - Investasi & BANK NKRI**
+
+*Platform Perbankan, Investasi Saham & Cryptocurrency Modern*
+
+**Made with ❤️ in Indonesia 🇮🇩**
+
+© 2026 INVANKRI. All rights reserved.
+
+[⬆ Back to Top](#-invankri---investasi--bank-nkri)
+
+</div>
