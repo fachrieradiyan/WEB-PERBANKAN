@@ -14,6 +14,12 @@ let animators = {};
 function initAnimators() {
     console.log('🎨 Initializing smooth animators...');
     
+    // Check if AdvancedSmoothAnimator is available
+    if (typeof AdvancedSmoothAnimator === 'undefined') {
+        console.warn('⚠️ AdvancedSmoothAnimator not loaded, skipping animation initialization');
+        return;
+    }
+    
     // Animator untuk balance
     if (document.getElementById('balance')) {
         animators.balance = new AdvancedSmoothAnimator(
@@ -194,42 +200,51 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Check authentication status
 function checkAuth() {
-    const loggedInUser = localStorage.getItem('currentUser');
-    const vipStatus = localStorage.getItem('isVIP');
-    const rememberMe = localStorage.getItem('rememberMe');
-    
-    // Auto-login if remember me is enabled
-    if (loggedInUser && rememberMe === 'true') {
-        currentUser = loggedInUser;
-        isVIP = vipStatus === 'true';
+    try {
+        const loggedInUser = localStorage.getItem('currentUser');
+        const vipStatus = localStorage.getItem('isVIP');
+        const rememberMe = localStorage.getItem('rememberMe');
         
-        // Load user data FIRST before showing app
-        loadUserData();
-        
-        showApp();
-        
-        // Initialize smooth animators
-        setTimeout(() => {
-            initAnimators();
-        }, 100);
-        
-        updateDisplay();
-        renderTransactionHistory();
-        renderStocks();
-        renderMyStocks();
-        updatePortfolioValue();
-        startStockPriceUpdates();
-        
-        // Start crypto price updates (data already loaded)
-        startCryptoPriceUpdates();
-        
-        // Load last page or default to dashboard
-        const lastPage = localStorage.getItem('currentPage') || 'dashboard';
-        switchPage(lastPage);
-        
-        console.log('✅ Auto-login berhasil untuk user:', currentUser);
-    } else {
-        showAuth();
+        // Auto-login if remember me is enabled
+        if (loggedInUser && rememberMe === 'true') {
+            currentUser = loggedInUser;
+            isVIP = vipStatus === 'true';
+            
+            // Load user data FIRST before showing app
+            loadUserData();
+            
+            showApp();
+            
+            // Initialize smooth animators (with error handling)
+            setTimeout(() => {
+                try {
+                    initAnimators();
+                } catch (error) {
+                    console.warn('⚠️ Animation initialization failed:', error);
+                }
+            }, 100);
+            
+            updateDisplay();
+            renderTransactionHistory();
+            renderStocks();
+            renderMyStocks();
+            updatePortfolioValue();
+            startStockPriceUpdates();
+            
+            // Start crypto price updates (data already loaded)
+            startCryptoPriceUpdates();
+            
+            // Load last page or default to dashboard
+            const lastPage = localStorage.getItem('currentPage') || 'dashboard';
+            switchPage(lastPage);
+            
+            console.log('✅ Auto-login berhasil untuk user:', currentUser);
+        } else {
+            showAuth();
+        }
+    } catch (error) {
+        console.error('❌ Error in checkAuth:', error);
+        showAuth(); // Fallback to login screen
     }
 }
 
@@ -563,94 +578,112 @@ function register() {
 
 // Login user
 function login() {
-    const username = document.getElementById('loginUsername').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    const rememberMe = document.getElementById('rememberMe')?.checked || false;
-    
-    // Validation
-    if (!username || !password) {
-        showNotification('Username dan password harus diisi!', 'error');
-        return;
-    }
-    
-    // Check VIP account first
-    if (VIP_ACCOUNTS[username]) {
-        if (VIP_ACCOUNTS[username].password === password) {
-            // VIP Login
-            currentUser = username;
-            isVIP = true;
-            localStorage.setItem('currentUser', username);
-            localStorage.setItem('isVIP', 'true');
-            localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
-            
-            // Clear form
-            document.getElementById('loginUsername').value = '';
-            document.getElementById('loginPassword').value = '';
-            
-            showNotification('Selamat datang, ' + VIP_ACCOUNTS[username].name + '! 👑', 'success');
-            
-            // Load user data FIRST
-            loadUserData();
-            
-            showApp();
-            
-            // Initialize smooth animators
-            setTimeout(() => {
-                initAnimators();
-            }, 100);
-            
-            updateDisplay();
-            renderTransactionHistory();
+    try {
+        console.log('🔐 Login function called');
+        
+        const username = document.getElementById('loginUsername').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMe')?.checked || false;
+        
+        console.log('Username:', username);
+        console.log('Remember me:', rememberMe);
+        
+        // Validation
+        if (!username || !password) {
+            showNotification('Username dan password harus diisi!', 'error');
             return;
-        } else {
+        }
+        
+        // Check VIP account first
+        if (VIP_ACCOUNTS[username]) {
+            if (VIP_ACCOUNTS[username].password === password) {
+                // VIP Login
+                currentUser = username;
+                isVIP = true;
+                localStorage.setItem('currentUser', username);
+                localStorage.setItem('isVIP', 'true');
+                localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+                
+                // Clear form
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                
+                showNotification('Selamat datang, ' + VIP_ACCOUNTS[username].name + '! 👑', 'success');
+                
+                // Load user data FIRST
+                loadUserData();
+                
+                showApp();
+                
+                // Initialize smooth animators (with error handling)
+                setTimeout(() => {
+                    try {
+                        initAnimators();
+                    } catch (error) {
+                        console.warn('⚠️ Animation initialization failed:', error);
+                    }
+                }, 100);
+                
+                updateDisplay();
+                renderTransactionHistory();
+                return;
+            } else {
+                showNotification('Password salah!', 'error');
+                return;
+            }
+        }
+        
+        // Check regular credentials
+        const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
+        if (!users[username]) {
+            showNotification('Username tidak ditemukan!', 'error');
+            return;
+        }
+        
+        if (users[username].password !== password) {
             showNotification('Password salah!', 'error');
             return;
         }
+        
+        // Update last login
+        users[username].lastLogin = new Date().toISOString();
+        localStorage.setItem('bankAppUsers', JSON.stringify(users));
+        
+        // Login successful
+        currentUser = username;
+        isVIP = false;
+        localStorage.setItem('currentUser', username);
+        localStorage.setItem('isVIP', 'false');
+        localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+        
+        // Clear form
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        
+        showNotification('✅ Login berhasil! Selamat datang, ' + username + '!', 'success');
+        
+        // Load user data FIRST
+        loadUserData();
+        
+        showApp();
+        
+        // Initialize smooth animators (with error handling)
+        setTimeout(() => {
+            try {
+                initAnimators();
+            } catch (error) {
+                console.warn('⚠️ Animation initialization failed:', error);
+            }
+        }, 100);
+        
+        updateDisplay();
+        renderTransactionHistory();
+        
+        console.log('✅ Login berhasil untuk user:', username);
+    } catch (error) {
+        console.error('❌ Error in login function:', error);
+        showNotification('Terjadi error saat login. Silakan coba lagi.', 'error');
     }
-    
-    // Check regular credentials
-    const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
-    if (!users[username]) {
-        showNotification('Username tidak ditemukan!', 'error');
-        return;
-    }
-    
-    if (users[username].password !== password) {
-        showNotification('Password salah!', 'error');
-        return;
-    }
-    
-    // Update last login
-    users[username].lastLogin = new Date().toISOString();
-    localStorage.setItem('bankAppUsers', JSON.stringify(users));
-    
-    // Login successful
-    currentUser = username;
-    isVIP = false;
-    localStorage.setItem('currentUser', username);
-    localStorage.setItem('isVIP', 'false');
-    localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
-    
-    // Clear form
-    document.getElementById('loginUsername').value = '';
-    document.getElementById('loginPassword').value = '';
-    
-    showNotification('✅ Login berhasil! Selamat datang, ' + username + '!', 'success');
-    
-    // Load user data FIRST
-    loadUserData();
-    
-    showApp();
-    
-    // Initialize smooth animators
-    setTimeout(() => {
-        initAnimators();
-    }, 100);
-    
-    updateDisplay();
-    renderTransactionHistory();
-    
-    console.log('✅ Login berhasil untuk user:', username);
 }
 
 // Logout user
