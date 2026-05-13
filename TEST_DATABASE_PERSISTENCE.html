@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Database & Persistence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-5xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">
+                🧪 Test Database & Persistence System
+            </h1>
+            <p class="text-gray-600 mb-6">
+                Panduan testing untuk fitur database localStorage dan auto-login
+            </p>
+
+            <!-- Test Scenarios -->
+            <div class="space-y-6">
+                <!-- Test 1 -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">
+                            Test 1: Register User Baru
+                        </h3>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-yellow-100 text-yellow-800">
+                            MANUAL TEST
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="font-semibold text-blue-800 mb-2">📋 Langkah-langkah:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-blue-700">
+                                <li>Buka aplikasi Investra (index.html)</li>
+                                <li>Klik tab <strong>"Daftar"</strong></li>
+                                <li>Isi form:
+                                    <ul class="list-disc list-inside ml-6 mt-1">
+                                        <li>Username: <code class="bg-blue-200 px-2 py-0.5 rounded">testuser1</code></li>
+                                        <li>Password: <code class="bg-blue-200 px-2 py-0.5 rounded">test123456</code></li>
+                                        <li>Konfirmasi: <code class="bg-blue-200 px-2 py-0.5 rounded">test123456</code></li>
+                                    </ul>
+                                </li>
+                                <li>Klik tombol <strong>"Daftar"</strong></li>
+                                <li>Perhatikan notifikasi dan form login</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 mb-2">✅ Expected Results:</p>
+                            <ul class="list-disc list-inside space-y-1 text-green-700">
+                                <li>Notifikasi: "✅ Registrasi berhasil! Silakan login."</li>
+                                <li>Otomatis pindah ke tab "Login"</li>
+                                <li>Username <code>testuser1</code> sudah terisi di form login</li>
+                                <li>Checkbox "Ingat saya" sudah tercentang (default)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test 2 -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">
+                            Test 2: Login & Auto-Login
+                        </h3>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-yellow-100 text-yellow-800">
+                            MANUAL TEST
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="font-semibold text-blue-800 mb-2">📋 Langkah-langkah:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-blue-700">
+                                <li>Setelah register (Test 1), isi password di form login</li>
+                                <li>Pastikan checkbox <strong>"Ingat saya"</strong> tercentang</li>
+                                <li>Klik <strong>"Masuk"</strong> atau tekan <strong>Enter</strong></li>
+                                <li>Perhatikan notifikasi dan dashboard</li>
+                                <li><strong>Refresh browser</strong> (tekan F5)</li>
+                                <li>Perhatikan apakah langsung masuk atau tidak</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 mb-2">✅ Expected Results:</p>
+                            <ul class="list-disc list-inside space-y-1 text-green-700">
+                                <li>Notifikasi: "✅ Login berhasil! Selamat datang, testuser1!"</li>
+                                <li>Masuk ke dashboard aplikasi</li>
+                                <li>Setelah refresh: <strong>Langsung masuk tanpa login ulang</strong></li>
+                                <li>Console log: "✅ Auto-login berhasil untuk user: testuser1"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test 3 -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">
+                            Test 3: Data Persistence
+                        </h3>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-yellow-100 text-yellow-800">
+                            MANUAL TEST
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="font-semibold text-blue-800 mb-2">📋 Langkah-langkah:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-blue-700">
+                                <li>Login dengan user yang sudah dibuat</li>
+                                <li>Setor uang <strong>Rp 10.000.000</strong></li>
+                                <li>Beli saham <strong>BBCA 10 lot</strong></li>
+                                <li>Catat saldo dan portofolio</li>
+                                <li><strong>Tutup browser</strong> sepenuhnya</li>
+                                <li><strong>Buka browser lagi</strong></li>
+                                <li>Buka aplikasi</li>
+                                <li>Cek saldo dan portofolio</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 mb-2">✅ Expected Results:</p>
+                            <ul class="list-disc list-inside space-y-1 text-green-700">
+                                <li>Auto-login berhasil</li>
+                                <li>Saldo masih sama (Rp 10.000.000 - harga BBCA x 10)</li>
+                                <li>Portofolio saham BBCA 10 lot masih ada</li>
+                                <li>Semua transaksi masih tercatat</li>
+                                <li><strong>Data tidak hilang sama sekali</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test 4 -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">
+                            Test 4: Multiple Users
+                        </h3>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-yellow-100 text-yellow-800">
+                            MANUAL TEST
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="font-semibold text-blue-800 mb-2">📋 Langkah-langkah:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-blue-700">
+                                <li>Register <strong>user1</strong>, login, setor Rp 5.000.000</li>
+                                <li>Logout</li>
+                                <li>Register <strong>user2</strong>, login, setor Rp 10.000.000</li>
+                                <li>Logout</li>
+                                <li>Login kembali dengan <strong>user1</strong></li>
+                                <li>Cek saldo user1</li>
+                                <li>Logout, login dengan <strong>user2</strong></li>
+                                <li>Cek saldo user2</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 mb-2">✅ Expected Results:</p>
+                            <ul class="list-disc list-inside space-y-1 text-green-700">
+                                <li>Saldo user1 = <strong>Rp 5.000.000</strong> (tidak berubah)</li>
+                                <li>Saldo user2 = <strong>Rp 10.000.000</strong> (tidak berubah)</li>
+                                <li>Data setiap user terpisah</li>
+                                <li>Tidak ada data yang tercampur</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test 5 -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">
+                            Test 5: Logout & Session Clear
+                        </h3>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-yellow-100 text-yellow-800">
+                            MANUAL TEST
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <p class="font-semibold text-blue-800 mb-2">📋 Langkah-langkah:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-blue-700">
+                                <li>Login dengan user</li>
+                                <li>Setor uang, beli saham</li>
+                                <li>Klik tombol <strong>"Keluar"</strong></li>
+                                <li>Konfirmasi logout</li>
+                                <li>Perhatikan form login</li>
+                                <li><strong>Refresh browser</strong></li>
+                                <li>Perhatikan apakah auto-login atau tidak</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 mb-2">✅ Expected Results:</p>
+                            <ul class="list-disc list-inside space-y-1 text-green-700">
+                                <li>Notifikasi: "✅ Logout berhasil!"</li>
+                                <li>Kembali ke form login</li>
+                                <li>Setelah refresh: <strong>Tetap di form login</strong> (tidak auto-login)</li>
+                                <li>Session cleared</li>
+                                <li>Data user tetap tersimpan (bisa login lagi)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Console Testing -->
+            <div class="mt-8 bg-gray-800 text-white rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">
+                    🔧 Console Testing Commands
+                </h3>
+                
+                <div class="space-y-3 text-sm font-mono">
+                    <div>
+                        <p class="text-gray-400 mb-1">// Lihat semua user yang terdaftar:</p>
+                        <p class="text-green-400">console.log(JSON.parse(localStorage.getItem('bankAppUsers')));</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-400 mb-1">// Lihat user yang sedang login:</p>
+                        <p class="text-green-400">console.log(localStorage.getItem('currentUser'));</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-400 mb-1">// Lihat status remember me:</p>
+                        <p class="text-green-400">console.log(localStorage.getItem('rememberMe'));</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-400 mb-1">// Lihat data user tertentu:</p>
+                        <p class="text-green-400">const users = JSON.parse(localStorage.getItem('bankAppUsers'));</p>
+                        <p class="text-green-400">console.log(users['testuser1']);</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-gray-400 mb-1">// Hitung jumlah user terdaftar:</p>
+                        <p class="text-green-400">const users = JSON.parse(localStorage.getItem('bankAppUsers'));</p>
+                        <p class="text-green-400">console.log('Total users:', Object.keys(users).length);</p>
+                    </div>
+                    
+                    <div class="pt-3 border-t border-gray-700">
+                        <p class="text-red-400 mb-1">// ⚠️ HATI-HATI: Clear semua data (reset):</p>
+                        <p class="text-red-400">localStorage.clear();</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Criteria -->
+            <div class="mt-6 bg-green-50 border-2 border-green-300 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-green-800 mb-4">
+                    ✅ Success Criteria
+                </h3>
+                
+                <ul class="space-y-2 text-sm text-green-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>User bisa register dengan username & password</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>User bisa login dengan kredensial yang benar</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Auto-login berfungsi saat refresh browser</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Data tidak hilang saat tutup & buka browser</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Multiple users dengan data terpisah</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Logout menghapus session (tidak auto-login lagi)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Data user tetap tersimpan setelah logout</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Checkbox "Ingat saya" berfungsi dengan baik</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="mt-6 bg-blue-50 border-2 border-blue-300 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">
+                    📌 Quick Reference
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p class="font-semibold text-blue-800 mb-2">🔑 Demo VIP Account:</p>
+                        <p class="text-blue-700">Username: <code class="bg-blue-200 px-2 py-0.5 rounded">dirut</code></p>
+                        <p class="text-blue-700">Password: <code class="bg-blue-200 px-2 py-0.5 rounded">dirut2026</code></p>
+                    </div>
+                    
+                    <div>
+                        <p class="font-semibold text-blue-800 mb-2">💾 Storage Location:</p>
+                        <p class="text-blue-700">localStorage.bankAppUsers</p>
+                    </div>
+                    
+                    <div>
+                        <p class="font-semibold text-blue-800 mb-2">🔄 Auto-Login Key:</p>
+                        <p class="text-blue-700">localStorage.rememberMe</p>
+                    </div>
+                    
+                    <div>
+                        <p class="font-semibold text-blue-800 mb-2">👤 Current User Key:</p>
+                        <p class="text-blue-700">localStorage.currentUser</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-600 text-sm">
+            <p>📝 Test Document untuk Database & Persistence System</p>
+            <p class="mt-1">Versi 1.0 - 12 Mei 2026</p>
+        </div>
+    </div>
+</body>
+</html>

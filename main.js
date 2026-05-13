@@ -196,8 +196,10 @@ window.addEventListener('DOMContentLoaded', () => {
 function checkAuth() {
     const loggedInUser = localStorage.getItem('currentUser');
     const vipStatus = localStorage.getItem('isVIP');
+    const rememberMe = localStorage.getItem('rememberMe');
     
-    if (loggedInUser) {
+    // Auto-login if remember me is enabled
+    if (loggedInUser && rememberMe === 'true') {
         currentUser = loggedInUser;
         isVIP = vipStatus === 'true';
         
@@ -224,6 +226,8 @@ function checkAuth() {
         // Load last page or default to dashboard
         const lastPage = localStorage.getItem('currentPage') || 'dashboard';
         switchPage(lastPage);
+        
+        console.log('✅ Auto-login berhasil untuk user:', currentUser);
     } else {
         showAuth();
     }
@@ -525,14 +529,22 @@ function register() {
         return;
     }
     
-    // Save new user
+    // Save new user with complete data structure
     users[username] = {
         password: password,
+        displayName: username,
+        isPriority: false,
         balance: 0,
         totalDeposit: 0,
         totalWithdraw: 0,
-        transactions: []
+        transactions: [],
+        stocks: [],
+        cryptos: [],
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString()
     };
+    
+    // Save to localStorage
     localStorage.setItem('bankAppUsers', JSON.stringify(users));
     
     // Clear form
@@ -540,14 +552,20 @@ function register() {
     document.getElementById('registerPassword').value = '';
     document.getElementById('registerPasswordConfirm').value = '';
     
-    showNotification('Registrasi berhasil! Silakan login.', 'success');
+    showNotification('✅ Registrasi berhasil! Silakan login.', 'success');
     switchAuthTab('login');
+    
+    // Auto-fill username di login form
+    document.getElementById('loginUsername').value = username;
+    
+    console.log('✅ User baru berhasil didaftarkan:', username);
 }
 
 // Login user
 function login() {
     const username = document.getElementById('loginUsername').value.trim();
     const password = document.getElementById('loginPassword').value;
+    const rememberMe = document.getElementById('rememberMe')?.checked || false;
     
     // Validation
     if (!username || !password) {
@@ -563,6 +581,7 @@ function login() {
             isVIP = true;
             localStorage.setItem('currentUser', username);
             localStorage.setItem('isVIP', 'true');
+            localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
             
             // Clear form
             document.getElementById('loginUsername').value = '';
@@ -574,6 +593,12 @@ function login() {
             loadUserData();
             
             showApp();
+            
+            // Initialize smooth animators
+            setTimeout(() => {
+                initAnimators();
+            }, 100);
+            
             updateDisplay();
             renderTransactionHistory();
             return;
@@ -595,24 +620,37 @@ function login() {
         return;
     }
     
+    // Update last login
+    users[username].lastLogin = new Date().toISOString();
+    localStorage.setItem('bankAppUsers', JSON.stringify(users));
+    
     // Login successful
     currentUser = username;
     isVIP = false;
     localStorage.setItem('currentUser', username);
     localStorage.setItem('isVIP', 'false');
+    localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
     
     // Clear form
     document.getElementById('loginUsername').value = '';
     document.getElementById('loginPassword').value = '';
     
-    showNotification('Login berhasil!', 'success');
+    showNotification('✅ Login berhasil! Selamat datang, ' + username + '!', 'success');
     
     // Load user data FIRST
     loadUserData();
     
     showApp();
+    
+    // Initialize smooth animators
+    setTimeout(() => {
+        initAnimators();
+    }, 100);
+    
     updateDisplay();
     renderTransactionHistory();
+    
+    console.log('✅ Login berhasil untuk user:', username);
 }
 
 // Logout user
@@ -624,8 +662,13 @@ function logout() {
             saveUserData();
             stopStockPriceUpdates();
             stopCryptoPriceUpdates();
+            
+            // Remove session data
             localStorage.removeItem('currentUser');
             localStorage.removeItem('isVIP');
+            localStorage.removeItem('rememberMe');
+            localStorage.removeItem('currentPage');
+            
             currentUser = null;
             isVIP = false;
             isPriority = false; // Reset Priority status
@@ -641,13 +684,16 @@ function logout() {
             resetCryptoOwnership();
             
             showAuth();
-            showNotification('Logout berhasil!', 'success');
+            showNotification('✅ Logout berhasil!', 'success');
             console.log('Logout completed successfully');
         } catch (error) {
             console.error('Error during logout:', error);
             alert('Terjadi error saat logout: ' + error.message);
         }
     } else {
+        console.log('User cancelled logout');
+    }
+}
         console.log('User cancelled logout');
     }
 }
