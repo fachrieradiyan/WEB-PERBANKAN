@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVANKRI - Diagnostic Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">
+                🔍 INVANKRI Diagnostic Tool
+            </h1>
+            
+            <div class="space-y-6">
+                <!-- Test 1: Check Elements -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4">Test 1: Check Elements</h3>
+                    <button onclick="checkElements()" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+                        Run Test
+                    </button>
+                    <div id="result1" class="mt-4"></div>
+                </div>
+                
+                <!-- Test 2: Check Functions -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4">Test 2: Check Functions</h3>
+                    <button onclick="checkFunctions()" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600">
+                        Run Test
+                    </button>
+                    <div id="result2" class="mt-4"></div>
+                </div>
+                
+                <!-- Test 3: Check localStorage -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4">Test 3: Check localStorage</h3>
+                    <button onclick="checkLocalStorage()" class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600">
+                        Run Test
+                    </button>
+                    <div id="result3" class="mt-4"></div>
+                </div>
+                
+                <!-- Test 4: Test Login Function -->
+                <div class="border-2 border-gray-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4">Test 4: Test Login Function</h3>
+                    <button onclick="testLogin()" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">
+                        Run Test
+                    </button>
+                    <div id="result4" class="mt-4"></div>
+                </div>
+                
+                <!-- Console Output -->
+                <div class="border-2 border-gray-200 rounded-xl p-6 bg-gray-900 text-white">
+                    <h3 class="text-xl font-bold mb-4">Console Output</h3>
+                    <div id="console" class="font-mono text-sm space-y-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const consoleDiv = document.getElementById('console');
+        
+        function log(message, type = 'info') {
+            const colors = {
+                'info': 'text-blue-400',
+                'success': 'text-green-400',
+                'error': 'text-red-400',
+                'warning': 'text-yellow-400'
+            };
+            
+            const line = document.createElement('div');
+            line.className = colors[type];
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleDiv.appendChild(line);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            
+            console.log(message);
+        }
+        
+        function showResult(id, html) {
+            document.getElementById(id).innerHTML = html;
+        }
+        
+        // Test 1: Check Elements
+        function checkElements() {
+            log('🔍 Checking elements...', 'info');
+            
+            const elements = [
+                'loginUsername',
+                'loginPassword',
+                'rememberMe',
+                'authScreen',
+                'appScreen',
+                'loginForm',
+                'registerForm'
+            ];
+            
+            let html = '<div class="space-y-2">';
+            let allFound = true;
+            
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    html += `<div class="text-green-600">✅ ${id} - Found</div>`;
+                    log(`✅ Element found: ${id}`, 'success');
+                } else {
+                    html += `<div class="text-red-600">❌ ${id} - Not Found</div>`;
+                    log(`❌ Element not found: ${id}`, 'error');
+                    allFound = false;
+                }
+            });
+            
+            html += '</div>';
+            
+            if (allFound) {
+                html += '<div class="mt-4 p-3 bg-green-100 text-green-700 rounded">All elements found!</div>';
+            } else {
+                html += '<div class="mt-4 p-3 bg-red-100 text-red-700 rounded">Some elements missing!</div>';
+            }
+            
+            showResult('result1', html);
+        }
+        
+        // Test 2: Check Functions
+        function checkFunctions() {
+            log('🔍 Checking functions...', 'info');
+            
+            const functions = [
+                'login',
+                'register',
+                'logout',
+                'checkAuth',
+                'showAuth',
+                'showApp',
+                'switchAuthTab'
+            ];
+            
+            let html = '<div class="space-y-2">';
+            let allFound = true;
+            
+            functions.forEach(name => {
+                if (typeof window[name] === 'function') {
+                    html += `<div class="text-green-600">✅ ${name}() - Defined</div>`;
+                    log(`✅ Function defined: ${name}()`, 'success');
+                } else {
+                    html += `<div class="text-red-600">❌ ${name}() - Not Defined</div>`;
+                    log(`❌ Function not defined: ${name}()`, 'error');
+                    allFound = false;
+                }
+            });
+            
+            html += '</div>';
+            
+            if (allFound) {
+                html += '<div class="mt-4 p-3 bg-green-100 text-green-700 rounded">All functions defined!</div>';
+            } else {
+                html += '<div class="mt-4 p-3 bg-red-100 text-red-700 rounded">Some functions missing!</div>';
+            }
+            
+            showResult('result2', html);
+        }
+        
+        // Test 3: Check localStorage
+        function checkLocalStorage() {
+            log('🔍 Checking localStorage...', 'info');
+            
+            let html = '<div class="space-y-2">';
+            
+            try {
+                // Test localStorage availability
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                html += '<div class="text-green-600">✅ localStorage - Available</div>';
+                log('✅ localStorage available', 'success');
+                
+                // Check stored data
+                const keys = ['currentUser', 'isVIP', 'rememberMe', 'bankAppUsers'];
+                keys.forEach(key => {
+                    const value = localStorage.getItem(key);
+                    if (value) {
+                        html += `<div class="text-blue-600">📦 ${key}: ${value.substring(0, 50)}...</div>`;
+                        log(`📦 ${key}: ${value.substring(0, 50)}...`, 'info');
+                    } else {
+                        html += `<div class="text-gray-600">⚪ ${key}: (empty)</div>`;
+                    }
+                });
+                
+                html += '<div class="mt-4 p-3 bg-green-100 text-green-700 rounded">localStorage working!</div>';
+            } catch (error) {
+                html += `<div class="text-red-600">❌ localStorage Error: ${error.message}</div>`;
+                log(`❌ localStorage error: ${error.message}`, 'error');
+                html += '<div class="mt-4 p-3 bg-red-100 text-red-700 rounded">localStorage not available!</div>';
+            }
+            
+            html += '</div>';
+            showResult('result3', html);
+        }
+        
+        // Test 4: Test Login Function
+        function testLogin() {
+            log('🔍 Testing login function...', 'info');
+            
+            let html = '<div class="space-y-2">';
+            
+            try {
+                if (typeof window.login === 'function') {
+                    html += '<div class="text-green-600">✅ login() function exists</div>';
+                    log('✅ login() function exists', 'success');
+                    
+                    // Try to call login (will fail validation but we can see if it runs)
+                    try {
+                        window.login();
+                        html += '<div class="text-blue-600">📝 login() executed (check console for errors)</div>';
+                        log('📝 login() executed', 'info');
+                    } catch (error) {
+                        html += `<div class="text-red-600">❌ login() error: ${error.message}</div>`;
+                        log(`❌ login() error: ${error.message}`, 'error');
+                    }
+                } else {
+                    html += '<div class="text-red-600">❌ login() function not found</div>';
+                    log('❌ login() function not found', 'error');
+                }
+            } catch (error) {
+                html += `<div class="text-red-600">❌ Test error: ${error.message}</div>`;
+                log(`❌ Test error: ${error.message}`, 'error');
+            }
+            
+            html += '</div>';
+            showResult('result4', html);
+        }
+        
+        // Auto-run on load
+        window.addEventListener('DOMContentLoaded', () => {
+            log('🚀 Diagnostic tool loaded', 'success');
+            log('Click buttons to run tests', 'info');
+        });
+    </script>
+</body>
+</html>
