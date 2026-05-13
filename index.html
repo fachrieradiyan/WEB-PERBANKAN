@@ -986,9 +986,28 @@
     </div>
 
     <!-- Advanced Smooth Animation System -->
-    <script src="js/advanced-smooth-animation.js"></script>
+    <script src="js/advanced-smooth-animation.js" onerror="console.warn('Animation script not loaded, using fallback')"></script>
     
     <!-- Load main script -->
     <script src="main.js"></script>
+    
+    <!-- Fallback: Ensure page works without animation -->
+    <script>
+        // Fallback if AdvancedSmoothAnimator is not loaded
+        if (typeof AdvancedSmoothAnimator === 'undefined') {
+            console.warn('⚠️ Using fallback: Animation disabled');
+            window.AdvancedSmoothAnimator = class {
+                constructor(element, options) {
+                    this.element = element;
+                }
+                animateTo(value) {
+                    if (this.element) {
+                        this.element.textContent = Math.floor(value).toLocaleString('id-ID');
+                    }
+                }
+                destroy() {}
+            };
+        }
+    </script>
 </body>
 </html>

@@ -7,6 +7,15 @@ let currentUser = null;
 let isVIP = false;
 let isPriority = false; // Status akun prioritas (Gold)
 
+// ===== INITIALIZATION CHECK =====
+console.log('🚀 INVANKRI Application Starting...');
+console.log('📍 Current URL:', window.location.href);
+console.log('📂 Base Path:', window.location.pathname);
+
+// Check if running on GitHub Pages or deployed
+const isDeployed = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+console.log('🌐 Deployed:', isDeployed);
+
 // ===== SMOOTH ANIMATION SYSTEM =====
 let animators = {};
 
