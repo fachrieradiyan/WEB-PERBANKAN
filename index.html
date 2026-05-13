@@ -1009,6 +1009,163 @@
             };
         }
         
+        // CRITICAL FIX: Inline login function as fallback
+        // This ensures login works even if main.js fails to load
+        
+        // VIP Accounts
+        const VIP_ACCOUNTS = {
+            'dirut': {
+                password: 'dirut2026',
+                name: 'Direktur Utama',
+                isVIP: true
+            }
+        };
+        
+        // Show notification
+        function showNotification(message, type) {
+            console.log('Notification:', message, type);
+            alert(message);
+        }
+        
+        // Show app screen
+        function showApp() {
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('appScreen').classList.remove('hidden');
+        }
+        
+        // Load user data
+        function loadUserData() {
+            if (!currentUser) return;
+            
+            const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
+            if (users[currentUser]) {
+                balance = users[currentUser].balance || 0;
+                totalDeposit = users[currentUser].totalDeposit || 0;
+                totalWithdraw = users[currentUser].totalWithdraw || 0;
+                transactions = users[currentUser].transactions || [];
+                isPriority = users[currentUser].isPriority || false;
+            }
+        }
+        
+        // Update display
+        function updateDisplay() {
+            const balanceEl = document.getElementById('balance');
+            const totalDepositEl = document.getElementById('totalDeposit');
+            const totalWithdrawEl = document.getElementById('totalWithdraw');
+            const currentUserEl = document.getElementById('currentUser');
+            
+            if (balanceEl) balanceEl.textContent = Math.floor(balance).toLocaleString('id-ID');
+            if (totalDepositEl) totalDepositEl.textContent = Math.floor(totalDeposit).toLocaleString('id-ID');
+            if (totalWithdrawEl) totalWithdrawEl.textContent = Math.floor(totalWithdraw).toLocaleString('id-ID');
+            if (currentUserEl) currentUserEl.textContent = currentUser || '';
+        }
+        
+        // Render transaction history
+        function renderTransactionHistory() {
+            // Will be handled by main.js if loaded
+            console.log('Transaction history render requested');
+        }
+        
+        // Initialize animators
+        function initAnimators() {
+            // Will be handled by main.js if loaded
+            console.log('Animators init requested');
+        }
+        
+        // State variables
+        let balance = 0;
+        let totalDeposit = 0;
+        let totalWithdraw = 0;
+        let transactions = [];
+        let currentUser = null;
+        let isVIP = false;
+        let isPriority = false;
+        
+        // INLINE LOGIN FUNCTION (Fallback if main.js fails)
+        function loginInline() {
+            console.log('🔐 Inline login function called');
+            
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe')?.checked || false;
+            
+            if (!username || !password) {
+                showNotification('Username dan password harus diisi!', 'error');
+                return;
+            }
+            
+            // Check VIP account
+            if (VIP_ACCOUNTS[username]) {
+                if (VIP_ACCOUNTS[username].password === password) {
+                    currentUser = username;
+                    isVIP = true;
+                    localStorage.setItem('currentUser', username);
+                    localStorage.setItem('isVIP', 'true');
+                    localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+                    
+                    document.getElementById('loginUsername').value = '';
+                    document.getElementById('loginPassword').value = '';
+                    
+                    showNotification('Selamat datang, ' + VIP_ACCOUNTS[username].name + '! 👑', 'success');
+                    
+                    loadUserData();
+                    showApp();
+                    
+                    setTimeout(() => {
+                        try {
+                            initAnimators();
+                            updateDisplay();
+                            renderTransactionHistory();
+                        } catch (e) {
+                            console.warn('Animation init failed:', e);
+                        }
+                    }, 100);
+                    
+                    return;
+                } else {
+                    showNotification('Password salah!', 'error');
+                    return;
+                }
+            }
+            
+            // Check regular users
+            const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
+            if (!users[username]) {
+                showNotification('Username tidak ditemukan!', 'error');
+                return;
+            }
+            
+            if (users[username].password !== password) {
+                showNotification('Password salah!', 'error');
+                return;
+            }
+            
+            // Login successful
+            currentUser = username;
+            isVIP = false;
+            localStorage.setItem('currentUser', username);
+            localStorage.setItem('isVIP', 'false');
+            localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+            
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            
+            showNotification('Login berhasil! Selamat datang, ' + username + '!', 'success');
+            
+            loadUserData();
+            showApp();
+            
+            setTimeout(() => {
+                try {
+                    initAnimators();
+                    updateDisplay();
+                    renderTransactionHistory();
+                } catch (e) {
+                    console.warn('Animation init failed:', e);
+                }
+            }, 100);
+        }
+        
         // CRITICAL FIX: Setup login button event listener after DOM loaded
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🔧 Setting up login button event listener...');
@@ -1019,12 +1176,13 @@
                     e.preventDefault();
                     console.log('🔐 Login button clicked!');
                     
-                    // Call login function from main.js
+                    // Try main.js login first, fallback to inline
                     if (typeof login === 'function') {
+                        console.log('Using main.js login()');
                         login();
                     } else {
-                        console.error('❌ login() function not found in main.js');
-                        alert('Error: Login function tidak ditemukan. Silakan refresh halaman.');
+                        console.log('Using inline login fallback');
+                        loginInline();
                     }
                 });
                 console.log('✅ Login button event listener attached!');
@@ -1040,6 +1198,8 @@
                         e.preventDefault();
                         if (typeof login === 'function') {
                             login();
+                        } else {
+                            loginInline();
                         }
                     }
                 });
