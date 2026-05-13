@@ -7,9 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Advanced Smooth Animation System -->
-    <link rel="stylesheet" href="js/advanced-animations.css">
-    
     <script>
         tailwind.config = {
             theme: {
@@ -24,242 +21,75 @@
             }
         }
     </script>
+    
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .gradient-bg {
             background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
         }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        @keyframes priceUp {
-            0% { background-color: transparent; }
-            50% { background-color: rgba(16, 185, 129, 0.3); }
-            100% { background-color: transparent; }
-        }
-        
-        @keyframes priceDown {
-            0% { background-color: transparent; }
-            50% { background-color: rgba(239, 68, 68, 0.3); }
-            100% { background-color: transparent; }
-        }
-        
-        .price-up {
-            animation: priceUp 0.8s ease-in-out;
-        }
-        
-        .price-down {
-            animation: priceDown 0.8s ease-in-out;
-        }
-        
-        .price-transition {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        /* Pulse animation for live indicator */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .live-indicator {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        /* Dark Mode Styles */
-        .dark {
-            background-color: #0F172A;
-            color: #E2E8F0;
-        }
-        .dark .bg-gray-50 {
-            background-color: #0F172A;
-        }
-        .dark .bg-white {
-            background-color: #1E293B;
-        }
-        .dark .text-gray-800 {
-            color: #E2E8F0;
-        }
-        .dark .text-gray-700 {
-            color: #CBD5E1;
-        }
-        .dark .text-gray-600 {
-            color: #94A3B8;
-        }
-        .dark .text-gray-500 {
-            color: #64748B;
-        }
-        .dark .border-gray-200 {
-            border-color: #334155;
-        }
-        .dark .border-gray-100 {
-            border-color: #334155;
-        }
-        .dark .bg-gray-50 {
-            background-color: #1E293B;
-        }
-        .dark .bg-blue-50 {
-            background-color: #1E3A5F;
-        }
-        .dark .bg-indigo-50 {
-            background-color: #312E81;
-        }
-        
-        /* Dark mode toggle button */
-        .dark-mode-toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background-color: #CBD5E1;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .dark .dark-mode-toggle {
-            background-color: #10B981;
-        }
-        .dark-mode-toggle-circle {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background-color: white;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-        .dark .dark-mode-toggle-circle {
-            transform: translateX(30px);
-        }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Login/Register Screen -->
+    
+    <!-- Login Screen -->
     <div id="authScreen" class="min-h-screen gradient-bg flex items-center justify-center px-4">
-        <div class="max-w-md w-full my-auto">
-            <div class="text-center mb-4">
-                <div class="inline-block bg-accent p-3 rounded-2xl mb-2">
-                    <i class="fas fa-chart-line text-3xl text-white"></i>
+        <div class="max-w-md w-full">
+            <div class="text-center mb-6">
+                <div class="inline-block bg-accent p-4 rounded-2xl mb-3">
+                    <i class="fas fa-chart-line text-4xl text-white"></i>
                 </div>
-                <h1 class="text-4xl font-bold text-white mb-1">INVANKRI</h1>
-                <p class="text-sm text-gray-300">Investasi & BANK NKRI</p>
+                <h1 class="text-5xl font-bold text-white mb-2">INVANKRI</h1>
+                <p class="text-gray-300">Investasi & BANK NKRI</p>
             </div>
 
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <!-- Tab Navigation -->
-                <div class="flex border-b border-gray-200">
-                    <button id="loginTab" onclick="switchAuthTab('login')" class="flex-1 py-3 font-semibold text-accent border-b-2 border-accent">
-                        Login
-                    </button>
-                    <button id="registerTab" onclick="switchAuthTab('register')" class="flex-1 py-3 font-semibold text-gray-500">
-                        Daftar
-                    </button>
-                </div>
-
                 <!-- Login Form -->
-                <div id="loginForm" class="p-6 bg-white">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Masuk ke Akun Anda</h2>
-                    <div class="space-y-3">
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Masuk ke Akun Anda</h2>
+                    
+                    <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
                             <input 
                                 type="text" 
                                 id="loginUsername" 
                                 placeholder="Masukkan username"
-                                class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
                             >
                         </div>
+                        
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                             <input 
                                 type="password" 
                                 id="loginPassword" 
                                 placeholder="Masukkan password"
-                                class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
-                                onkeypress="if(event.key === 'Enter') login()"
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
                             >
                         </div>
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                id="rememberMe" 
-                                class="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded focus:ring-accent focus:ring-2"
-                                checked
-                            >
-                            <label for="rememberMe" class="ml-2 text-sm text-gray-700">
-                                Ingat saya (tetap login)
-                            </label>
-                        </div>
+                        
                         <button 
-                            onclick="login()" 
-                            class="w-full bg-accent hover:bg-green-600 text-white font-bold py-2.5 rounded-xl transition duration-200 transform hover:scale-[1.02]">
+                            id="loginBtn"
+                            class="w-full bg-accent hover:bg-green-600 text-white font-bold py-3 rounded-xl transition duration-200 transform hover:scale-[1.02]">
                             <i class="fas fa-sign-in-alt mr-2"></i>Masuk
                         </button>
                     </div>
                     
-                    <!-- Demo Account Info -->
-                    <div class="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-200">
-                        <p class="text-xs text-blue-800 font-semibold mb-1">💡 Demo Account:</p>
+                    <div class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
+                        <p class="text-xs text-blue-800 font-semibold mb-2">💡 Demo Account:</p>
                         <p class="text-xs text-blue-700">Username: <span class="font-mono font-bold">dirut</span></p>
                         <p class="text-xs text-blue-700">Password: <span class="font-mono font-bold">dirut2026</span></p>
                     </div>
-                </div>
-
-                <!-- Register Form -->
-                <div id="registerForm" class="p-6 bg-white hidden">
-                    <h2 class="text-xl font-bold text-gray-800 mb-4">Buat Akun Baru</h2>
-                    <div class="space-y-3">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                            <input 
-                                type="text" 
-                                id="registerUsername" 
-                                placeholder="Pilih username"
-                                class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
-                            >
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                            <input 
-                                type="password" 
-                                id="registerPassword" 
-                                placeholder="Buat password"
-                                class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
-                            >
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
-                            <input 
-                                type="password" 
-                                id="registerPasswordConfirm" 
-                                placeholder="Ulangi password"
-                                class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
-                            >
-                        </div>
-                        <button 
-                            onclick="register()" 
-                            class="w-full bg-accent hover:bg-green-600 text-white font-bold py-2.5 rounded-xl transition duration-200 transform hover:scale-[1.02]">
-                            <i class="fas fa-user-plus mr-2"></i>Daftar
-                        </button>
-                    </div>
+                    
+                    <div id="notification" class="mt-4 hidden"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Main App Screen -->
+    <!-- App Screen -->
     <div id="appScreen" class="min-h-screen hidden">
         <!-- Header -->
         <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
@@ -275,73 +105,22 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="text-right hidden md:block">
+                        <div class="text-right">
                             <p class="text-xs text-gray-300">Selamat datang,</p>
                             <p class="font-bold" id="currentUser"></p>
                         </div>
-                        <!-- Dark Mode Toggle -->
-                        <button onclick="toggleDarkMode()" class="dark-mode-toggle" title="Toggle Dark Mode">
-                            <div class="dark-mode-toggle-circle">
-                                <i class="fas fa-sun text-yellow-500 dark-icon-sun"></i>
-                                <i class="fas fa-moon text-gray-700 dark-icon-moon hidden"></i>
-                            </div>
-                        </button>
                         <button 
-                            onclick="logout()" 
-                            class="bg-danger hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-200 flex items-center gap-2">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="hidden md:inline">Keluar</span>
+                            id="logoutBtn"
+                            class="bg-danger hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-200">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Keluar
                         </button>
                     </div>
                 </div>
             </div>
         </header>
 
+        <!-- Dashboard -->
         <div class="container mx-auto px-4 py-8">
-            <!-- Navigation Tabs -->
-            <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-2 mb-6">
-                <div class="flex gap-2">
-                    <button 
-                        onclick="switchPage('dashboard')" 
-                        id="tabDashboard"
-                        class="flex-1 py-3 px-4 rounded-xl font-semibold transition duration-200 bg-accent text-white">
-                        <i class="fas fa-home mr-2"></i>Dashboard
-                    </button>
-                    <button 
-                        onclick="switchPage('transactions')" 
-                        id="tabTransactions"
-                        class="flex-1 py-3 px-4 rounded-xl font-semibold transition duration-200 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-exchange-alt mr-2"></i>Transaksi
-                    </button>
-                    <button 
-                        onclick="switchPage('stocks')" 
-                        id="tabStocks"
-                        class="flex-1 py-3 px-4 rounded-xl font-semibold transition duration-200 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-chart-line mr-2"></i>Saham
-                    </button>
-                    <button 
-                        onclick="switchPage('crypto')" 
-                        id="tabCrypto"
-                        class="flex-1 py-3 px-4 rounded-xl font-semibold transition duration-200 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fab fa-bitcoin mr-2"></i>Crypto
-                    </button>
-                    <button 
-                        onclick="switchPage('chart')" 
-                        id="tabChart"
-                        class="flex-1 py-3 px-4 rounded-xl font-semibold transition duration-200 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-chart-area mr-2"></i>Chart
-                    </button>
-                    <button 
-                        onclick="switchPage('profile')" 
-                        id="tabProfile"
-                        class="flex-1 py-3 px-4 rounded-xl font-semibold transition duration-200 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-user mr-2"></i>Profil
-                    </button>
-                </div>
-            </div>
-
-            <!-- Dashboard Page -->
-            <div id="pageDashboard" class="page-content">
             <!-- Balance Card -->
             <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-2xl p-8 mb-8 text-white">
                 <div class="flex justify-between items-start mb-6">
@@ -370,644 +149,341 @@
             <!-- Transaction Forms -->
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <!-- Deposit Form -->
-                <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 card-hover border-2 border-transparent hover:border-accent">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="bg-accent/10 p-3 rounded-xl">
                             <i class="fas fa-plus-circle text-2xl text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Setor Saldo</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Setor Saldo</h3>
                     </div>
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Jumlah</label>
                             <input 
-                                type="text" 
+                                type="number" 
                                 id="depositAmount" 
                                 placeholder="Masukkan jumlah"
-                                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent"
                             >
-                            <p id="depositTerbilang" class="mt-2 text-sm text-accent font-medium italic hidden"></p>
                         </div>
                         <button 
-                            onclick="deposit()" 
-                            class="w-full bg-accent hover:bg-green-600 text-white font-bold py-3 rounded-xl transition duration-200 transform hover:scale-[1.02]">
+                            id="depositBtn"
+                            class="w-full bg-accent hover:bg-green-600 text-white font-bold py-3 rounded-xl transition">
                             <i class="fas fa-arrow-down mr-2"></i>Setor Uang
                         </button>
                     </div>
                 </div>
 
                 <!-- Withdraw Form -->
-                <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 card-hover border-2 border-transparent hover:border-danger">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="bg-danger/10 p-3 rounded-xl">
                             <i class="fas fa-minus-circle text-2xl text-danger"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Tarik Saldo</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Tarik Saldo</h3>
                     </div>
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Jumlah</label>
                             <input 
-                                type="text" 
+                                type="number" 
                                 id="withdrawAmount" 
                                 placeholder="Masukkan jumlah"
-                                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-danger focus:border-transparent"
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-danger"
                             >
-                            <p id="withdrawTerbilang" class="mt-2 text-sm text-danger font-medium italic hidden"></p>
                         </div>
                         <button 
-                            onclick="withdraw()" 
-                            class="w-full bg-danger hover:bg-red-600 text-white font-bold py-3 rounded-xl transition duration-200 transform hover:scale-[1.02]">
+                            id="withdrawBtn"
+                            class="w-full bg-danger hover:bg-red-600 text-white font-bold py-3 rounded-xl transition">
                             <i class="fas fa-arrow-up mr-2"></i>Tarik Uang
                         </button>
                     </div>
                 </div>
             </div>
-            </div>
 
-            <!-- Transactions Page -->
-            <div id="pageTransactions" class="page-content hidden">
-                <!-- Transaction History -->
-                <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
-                        <i class="fas fa-history text-gray-600 dark:text-gray-400"></i>
-                        Riwayat Transaksi
-                    </h3>
-                    <div id="transactionHistory" class="space-y-3">
-                        <p class="text-gray-500 text-center py-4">Belum ada transaksi</p>
-                    </div>
+            <!-- Transaction History -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <i class="fas fa-history text-gray-600"></i>
+                    Riwayat Transaksi
+                </h3>
+                <div id="transactionHistory" class="space-y-3">
+                    <p class="text-gray-500 text-center py-4">Belum ada transaksi</p>
                 </div>
-            </div>
-
-            <!-- Stocks Page -->
-            <div id="pageStocks" class="page-content hidden">
-                <!-- Stock Trading Section -->
-                <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 mb-8">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="bg-blue-500/10 p-3 rounded-xl">
-                            <i class="fas fa-chart-line text-2xl text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Perdagangan Saham</h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Investasi saham Indonesia</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Stock Portfolio Summary -->
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-6 rounded-2xl mb-6 border border-blue-100 dark:border-blue-800">
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mb-1">Total Nilai Portofolio</p>
-                                <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">Rp <span id="portfolioValue">0</span></p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mb-1">Keuntungan/Kerugian</p>
-                                <p class="text-2xl font-bold" id="portfolioProfit">Rp 0</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Stock List -->
-                    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6" id="stockList">
-                        <!-- Stocks will be rendered here -->
-                    </div>
-
-                    <!-- My Stocks Portfolio -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
-                        <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
-                            <i class="fas fa-briefcase text-blue-600"></i>
-                            Portofolio Saham Saya
-                        </h4>
-                        <div id="myStocks" class="space-y-3">
-                            <p class="text-gray-500 text-center py-4">Anda belum memiliki saham</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Crypto Page -->
-            <div id="pageCrypto" class="page-content hidden">
-                <!-- Crypto Trading Section -->
-                <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 mb-8">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="bg-orange-500/10 p-3 rounded-xl">
-                            <i class="fab fa-bitcoin text-2xl text-orange-500"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Perdagangan Cryptocurrency</h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Trading Bitcoin & Crypto Digital</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Crypto Portfolio Summary -->
-                    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900 dark:to-yellow-900 p-6 rounded-2xl mb-6 border border-orange-100 dark:border-orange-800">
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mb-1">Total Nilai Portofolio Crypto</p>
-                                <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">Rp <span id="cryptoPortfolioValue">0</span></p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mb-1">Keuntungan/Kerugian</p>
-                                <p class="text-2xl font-bold" id="cryptoPortfolioProfit">Rp 0</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Crypto List -->
-                    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6" id="cryptoList">
-                        <!-- Cryptos will be rendered here -->
-                    </div>
-
-                    <!-- My Crypto Portfolio -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
-                        <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
-                            <i class="fas fa-wallet text-orange-500"></i>
-                            Portofolio Crypto Saya
-                        </h4>
-                        <div id="myCryptos" class="space-y-3">
-                            <p class="text-gray-500 text-center py-4">Anda belum memiliki cryptocurrency</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chart Page -->
-            <div id="pageChart" class="page-content hidden">
-                <div class="bg-white dark:bg-secondary rounded-3xl shadow-xl p-6 mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                        <i class="fas fa-chart-area mr-2 text-blue-500"></i>Grafik Pergerakan Harga
-                    </h2>
-                    
-                    <!-- Stock Selector -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Pilih Saham/Crypto</label>
-                        <select id="chartAssetSelect" onchange="switchChartAsset()" class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <optgroup label="Saham">
-                            </optgroup>
-                            <optgroup label="Cryptocurrency">
-                            </optgroup>
-                        </select>
-                    </div>
-                    
-                    <!-- Chart Info -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-xl">
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Harga Saat Ini</p>
-                            <p class="text-xl font-bold text-blue-600 dark:text-blue-400" id="chartCurrentPrice">-</p>
-                        </div>
-                        <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-xl">
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Tertinggi</p>
-                            <p class="text-xl font-bold text-green-600 dark:text-green-400" id="chartHighPrice">-</p>
-                        </div>
-                        <div class="bg-red-50 dark:bg-red-900/30 p-4 rounded-xl">
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Terendah</p>
-                            <p class="text-xl font-bold text-red-600 dark:text-red-400" id="chartLowPrice">-</p>
-                        </div>
-                        <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-xl">
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Perubahan</p>
-                            <p class="text-xl font-bold text-purple-600 dark:text-purple-400" id="chartChangePercent">-</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Chart Canvas -->
-                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 relative" style="height: 400px;">
-                        <canvas id="priceChart"></canvas>
-                    </div>
-                    
-                    <!-- Live Indicator -->
-                    <div class="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <div class="w-2 h-2 bg-green-500 rounded-full live-indicator"></div>
-                        <span>Live Update</span>
-                    </div>
-                </div>
-                
-                <!-- Top Gainers & Losers -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Top Gainers -->
-                    <div class="bg-white dark:bg-secondary rounded-3xl shadow-xl p-6">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
-                            <i class="fas fa-arrow-up text-green-500 mr-2"></i>Top Gainers
-                        </h3>
-                        <div id="topGainers" class="space-y-3">
-                            <!-- Will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <!-- Top Losers -->
-                    <div class="bg-white dark:bg-secondary rounded-3xl shadow-xl p-6">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
-                            <i class="fas fa-arrow-down text-red-500 mr-2"></i>Top Losers
-                        </h3>
-                        <div id="topLosers" class="space-y-3">
-                            <!-- Will be populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Profile Page -->
-            <div id="pageProfile" class="page-content hidden">
-                <!-- Profile Header -->
-                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-2xl p-8 mb-8 text-white">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-6">
-                            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
-                                <i class="fas fa-user text-5xl"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-2">
-                                    <h2 class="text-3xl font-bold" id="profileDisplayName">Username</h2>
-                                    <button 
-                                        onclick="openEditNameModal()" 
-                                        class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition duration-200 text-sm">
-                                        <i class="fas fa-edit mr-1"></i>Edit
-                                    </button>
-                                </div>
-                                <p class="text-sm text-gray-400">@<span id="profileUsername">username</span></p>
-                                <p class="text-gray-300 mt-1" id="profileAccountType">Akun Regular</p>
-                                <p class="text-sm text-gray-400 mt-1" id="profileMemberSince">Bergabung sejak: -</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Priority Account Info (Hidden by default, shown when isPriority = true) -->
-                <div id="priorityAccountInfo" class="bg-gradient-to-r from-yellow-50 via-yellow-100 to-yellow-50 dark:from-yellow-900 dark:to-yellow-800 rounded-2xl shadow-lg p-6 mb-8 border-2 border-yellow-300 dark:border-yellow-600" style="display: none;">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="text-5xl animate-bounce">⭐</div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-1">
-                                    Priority Account
-                                </h3>
-                                <p class="text-sm text-gray-700 dark:text-gray-300">
-                                    Anda telah mencapai status Priority dengan total setoran <span class="font-bold">Rp 100 Miliar+</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text-6xl">🎉</div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center">
-                            <div class="text-2xl mb-2">⭐</div>
-                            <p class="text-xs text-gray-600 dark:text-gray-300">Badge Gold</p>
-                        </div>
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center">
-                            <div class="text-2xl mb-2">🎯</div>
-                            <p class="text-xs text-gray-600 dark:text-gray-300">Prioritas CS</p>
-                        </div>
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center">
-                            <div class="text-2xl mb-2">💎</div>
-                            <p class="text-xs text-gray-600 dark:text-gray-300">Fitur Eksklusif</p>
-                        </div>
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-4 text-center">
-                            <div class="text-2xl mb-2">🚀</div>
-                            <p class="text-xs text-gray-600 dark:text-gray-300">Limit Tinggi</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Account Summary -->
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <!-- Cash Balance -->
-                    <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 border-2 border-green-200 dark:border-green-800">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="bg-green-100 dark:bg-green-900 p-3 rounded-xl">
-                                <i class="fas fa-wallet text-2xl text-green-600"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Saldo Kas</h3>
-                        </div>
-                        <p class="text-3xl font-bold text-green-600 mb-2">Rp <span id="profileBalance">0</span></p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Saldo tersedia untuk transaksi</p>
-                    </div>
-
-                    <!-- Stock Portfolio -->
-                    <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 border-2 border-blue-200 dark:border-blue-800">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-xl">
-                                <i class="fas fa-chart-line text-2xl text-blue-600"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Portofolio Saham</h3>
-                        </div>
-                        <p class="text-3xl font-bold text-blue-600 mb-2">Rp <span id="profileStockValue">0</span></p>
-                        <p class="text-sm" id="profileStockProfit">Profit: Rp 0</p>
-                    </div>
-
-                    <!-- Crypto Portfolio -->
-                    <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6 border-2 border-orange-200 dark:border-orange-800">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="bg-orange-100 dark:bg-orange-900 p-3 rounded-xl">
-                                <i class="fab fa-bitcoin text-2xl text-orange-600"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Portofolio Crypto</h3>
-                        </div>
-                        <p class="text-3xl font-bold text-orange-600 mb-2">Rp <span id="profileCryptoValue">0</span></p>
-                        <p class="text-sm" id="profileCryptoProfit">Profit: Rp 0</p>
-                    </div>
-                </div>
-
-                <!-- Total Net Worth -->
-                <div class="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-3xl shadow-2xl p-8 mb-8 text-white">
-                    <div class="text-center">
-                        <p class="text-lg opacity-90 mb-2">Total Kekayaan Bersih</p>
-                        <h2 class="text-5xl font-bold mb-4">Rp <span id="profileTotalNetWorth">0</span></h2>
-                        <div class="flex justify-center items-center gap-2">
-                            <div class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl">
-                                <p class="text-sm">Total Profit/Loss: <span class="font-bold" id="profileTotalProfit">Rp 0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Statistics -->
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                    <!-- Banking Statistics -->
-                    <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
-                            <i class="fas fa-university text-green-600"></i>
-                            Statistik Perbankan
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                <span class="text-gray-600 dark:text-gray-300">Total Setoran</span>
-                                <span class="font-bold text-green-600">Rp <span id="profileTotalDeposit">0</span></span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                <span class="text-gray-600 dark:text-gray-300">Total Penarikan</span>
-                                <span class="font-bold text-red-600">Rp <span id="profileTotalWithdraw">0</span></span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                <span class="text-gray-600 dark:text-gray-300">Total Transaksi</span>
-                                <span class="font-bold text-gray-800 dark:text-white" id="profileTotalTransactions">0</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Investment Statistics -->
-                    <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
-                            <i class="fas fa-chart-pie text-blue-600"></i>
-                            Statistik Investasi
-                        </h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                <span class="text-gray-600 dark:text-gray-300">Jumlah Saham</span>
-                                <span class="font-bold text-blue-600" id="profileStockCount">0 jenis</span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                <span class="text-gray-600 dark:text-gray-300">Jumlah Crypto</span>
-                                <span class="font-bold text-orange-600" id="profileCryptoCount">0 jenis</span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                <span class="text-gray-600 dark:text-gray-300">Alokasi Aset</span>
-                                <span class="font-bold text-gray-800 dark:text-white" id="profileAssetAllocation">-</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portfolio Breakdown -->
-                <div class="bg-white dark:bg-secondary rounded-2xl shadow-lg p-6">
-                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
-                        <i class="fas fa-briefcase text-purple-600"></i>
-                        Rincian Portofolio
-                    </h3>
-                    
-                    <!-- Stock Holdings -->
-                    <div class="mb-6">
-                        <h4 class="font-bold text-gray-700 dark:text-gray-300 mb-3">Kepemilikan Saham</h4>
-                        <div id="profileStockHoldings" class="space-y-2">
-                            <p class="text-gray-500 text-center py-4">Tidak ada saham</p>
-                        </div>
-                    </div>
-
-                    <!-- Crypto Holdings -->
-                    <div>
-                        <h4 class="font-bold text-gray-700 dark:text-gray-300 mb-3">Kepemilikan Cryptocurrency</h4>
-                        <div id="profileCryptoHoldings" class="space-y-2">
-                            <p class="text-gray-500 text-center py-4">Tidak ada cryptocurrency</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="bg-slate-900 text-white py-6 mt-12">
-            <div class="container mx-auto px-4 text-center">
-                <p class="text-sm text-gray-400">© 2026 INVANKRI - Investasi & BANK NKRI | Platform Perbankan, Investasi Saham & Cryptocurrency</p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Notification Toast -->
-    <div id="notification" class="fixed top-4 right-4 hidden z-50">
-        <div class="bg-white rounded-xl shadow-2xl p-4 max-w-sm border-l-4" id="notificationContent">
-            <p id="notificationMessage" class="font-medium"></p>
-        </div>
-    </div>
-
-    <!-- Stock Buy/Sell Modal -->
-    <div id="stockModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 px-4">
-        <div class="bg-white dark:bg-secondary rounded-3xl shadow-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white" id="modalTitle">Beli Saham</h3>
-                <button onclick="closeStockModal()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            
-            <div class="mb-6">
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-4 rounded-2xl mb-4 border border-blue-100 dark:border-blue-800">
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Saham</p>
-                    <p class="text-xl font-bold text-blue-600 dark:text-blue-400" id="modalStockName"></p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Harga per lembar</p>
-                    <p class="text-2xl font-bold text-gray-800 dark:text-white">Rp <span id="modalStockPrice"></span></p>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah Lembar</label>
-                    <div class="flex gap-2">
-                        <input 
-                            type="number" 
-                            id="stockQuantity" 
-                            placeholder="Masukkan jumlah lembar"
-                            class="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            min="1"
-                        >
-                        <button 
-                            id="stockSellAllBtn"
-                            onclick="fillMaxStockQuantity()" 
-                            class="hidden px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl transition duration-200 whitespace-nowrap">
-                            Jual Semua
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-gray-600 dark:text-gray-300">Total Harga:</span>
-                        <span class="font-bold text-lg dark:text-white">Rp <span id="modalTotalPrice">0</span></span>
-                    </div>
-                    <div class="flex justify-between text-sm" id="modalBalanceInfo">
-                        <span class="text-gray-600 dark:text-gray-300">Saldo Anda:</span>
-                        <span class="font-semibold dark:text-white">Rp <span id="modalBalance">0</span></span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex gap-3">
-                <button 
-                    onclick="closeStockModal()" 
-                    class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-3 rounded-xl transition duration-200">
-                    Batal
-                </button>
-                <button 
-                    id="modalActionButton"
-                    onclick="executeStockTransaction()" 
-                    class="flex-1 bg-accent hover:bg-green-600 text-white font-bold py-3 rounded-xl transition duration-200">
-                    Beli
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- Crypto Buy/Sell Modal -->
-    <div id="cryptoModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 px-4">
-        <div class="bg-white dark:bg-secondary rounded-3xl shadow-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white" id="cryptoModalTitle">Beli Crypto</h3>
-                <button onclick="closeCryptoModal()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            
-            <div class="mb-6">
-                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900 dark:to-yellow-900 p-4 rounded-2xl mb-4 border border-orange-100 dark:border-orange-800">
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Cryptocurrency</p>
-                    <p class="text-xl font-bold text-orange-600 dark:text-orange-400" id="cryptoModalName"></p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Harga per koin</p>
-                    <p class="text-2xl font-bold text-gray-800 dark:text-white">Rp <span id="cryptoModalPrice"></span></p>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Jumlah Koin</label>
-                    <div class="flex gap-2">
-                        <input 
-                            type="number" 
-                            id="cryptoQuantity" 
-                            placeholder="Masukkan jumlah koin"
-                            step="0.00000001"
-                            class="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                            min="0.00000001"
-                        >
-                        <button 
-                            id="cryptoSellAllBtn"
-                            onclick="fillMaxCryptoQuantity()" 
-                            class="hidden px-4 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition duration-200 whitespace-nowrap">
-                            Jual Semua
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-gray-600 dark:text-gray-300">Total Harga:</span>
-                        <span class="font-bold text-lg dark:text-white">Rp <span id="cryptoModalTotalPrice">0</span></span>
-                    </div>
-                    <div class="flex justify-between text-sm" id="cryptoModalBalanceInfo">
-                        <span class="text-gray-600 dark:text-gray-300">Saldo Anda:</span>
-                        <span class="font-semibold dark:text-white">Rp <span id="cryptoModalBalance">0</span></span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex gap-3">
-                <button 
-                    onclick="closeCryptoModal()" 
-                    class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-3 rounded-xl transition duration-200">
-                    Batal
-                </button>
-                <button 
-                    id="cryptoModalActionButton"
-                    onclick="executeCryptoTransaction()" 
-                    class="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition duration-200">
-                    Beli
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit Name Modal -->
-    <div id="editNameModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 px-4">
-        <div class="bg-white dark:bg-secondary rounded-3xl shadow-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Edit Nama Tampilan</h3>
-                <button onclick="closeEditNameModal()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            
-            <div class="mb-6">
-                <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-xl mb-4 border border-blue-200 dark:border-blue-800">
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-1">Username (tidak bisa diubah)</p>
-                    <p class="font-bold text-gray-800 dark:text-white">@<span id="editModalUsername">username</span></p>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nama Tampilan</label>
-                    <input 
-                        type="text" 
-                        id="editDisplayNameInput" 
-                        placeholder="Masukkan nama tampilan"
-                        maxlength="50"
-                        class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                    >
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                        <i class="fas fa-info-circle mr-1"></i>Nama ini akan ditampilkan di profil Anda
-                    </p>
-                </div>
-            </div>
-            
-            <div class="flex gap-3">
-                <button 
-                    onclick="closeEditNameModal()" 
-                    class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-3 rounded-xl transition duration-200">
-                    Batal
-                </button>
-                <button 
-                    onclick="saveDisplayName()" 
-                    class="flex-1 bg-accent hover:bg-green-600 text-white font-bold py-3 rounded-xl transition duration-200">
-                    <i class="fas fa-save mr-2"></i>Simpan
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Advanced Smooth Animation System -->
-    <script src="js/advanced-smooth-animation.js" onerror="console.warn('Animation script not loaded, using fallback')"></script>
-    
-    <!-- Load main script -->
-    <script src="main.js"></script>
-    
-    <!-- Fallback: Ensure page works without animation -->
+    <!-- JavaScript -->
     <script>
-        // Fallback if AdvancedSmoothAnimator is not loaded
-        if (typeof AdvancedSmoothAnimator === 'undefined') {
-            console.warn('⚠️ Using fallback: Animation disabled');
-            window.AdvancedSmoothAnimator = class {
-                constructor(element, options) {
-                    this.element = element;
-                }
-                animateTo(value) {
-                    if (this.element) {
-                        this.element.textContent = Math.floor(value).toLocaleString('id-ID');
-                    }
-                }
-                destroy() {}
-            };
+        console.log('🚀 INVANKRI Starting...');
+        
+        // State
+        let currentUser = null;
+        let balance = 0;
+        let totalDeposit = 0;
+        let totalWithdraw = 0;
+        let transactions = [];
+        
+        // VIP Accounts
+        const VIP_ACCOUNTS = {
+            'dirut': {
+                password: 'dirut2026',
+                name: 'Direktur Utama',
+                isVIP: true
+            }
+        };
+        
+        // Elements
+        const authScreen = document.getElementById('authScreen');
+        const appScreen = document.getElementById('appScreen');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const depositBtn = document.getElementById('depositBtn');
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        
+        // Show notification
+        function showNotification(message, type) {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.className = `mt-4 p-3 rounded-lg text-center ${
+                type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+            }`;
+            notif.classList.remove('hidden');
+            
+            setTimeout(() => {
+                notif.classList.add('hidden');
+            }, 3000);
         }
+        
+        // Format currency
+        function formatCurrency(amount) {
+            return Math.floor(amount).toLocaleString('id-ID');
+        }
+        
+        // Update display
+        function updateDisplay() {
+            document.getElementById('balance').textContent = formatCurrency(balance);
+            document.getElementById('totalDeposit').textContent = formatCurrency(totalDeposit);
+            document.getElementById('totalWithdraw').textContent = formatCurrency(totalWithdraw);
+            document.getElementById('currentUser').textContent = currentUser;
+        }
+        
+        // Render transactions
+        function renderTransactions() {
+            const container = document.getElementById('transactionHistory');
+            
+            if (transactions.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 text-center py-4">Belum ada transaksi</p>';
+                return;
+            }
+            
+            container.innerHTML = transactions.map(t => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center ${
+                            t.type === 'deposit' ? 'bg-green-100' : 'bg-red-100'
+                        }">
+                            <i class="fas fa-${t.type === 'deposit' ? 'arrow-down' : 'arrow-up'} ${
+                            t.type === 'deposit' ? 'text-green-600' : 'text-red-600'
+                        }"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">${
+                                t.type === 'deposit' ? 'Setor' : 'Tarik'
+                            }</p>
+                            <p class="text-xs text-gray-500">${t.date}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold ${t.type === 'deposit' ? 'text-green-600' : 'text-red-600'}">
+                            ${t.type === 'deposit' ? '+' : '-'}Rp ${formatCurrency(t.amount)}
+                        </p>
+                        <p class="text-xs text-gray-500">Saldo: Rp ${formatCurrency(t.balanceAfter)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Save data
+        function saveData() {
+            if (!currentUser) return;
+            
+            const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
+            users[currentUser] = {
+                password: users[currentUser]?.password || 'default',
+                balance,
+                totalDeposit,
+                totalWithdraw,
+                transactions
+            };
+            localStorage.setItem('bankAppUsers', JSON.stringify(users));
+        }
+        
+        // Load data
+        function loadData() {
+            if (!currentUser) return;
+            
+            const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
+            if (users[currentUser]) {
+                balance = users[currentUser].balance || 0;
+                totalDeposit = users[currentUser].totalDeposit || 0;
+                totalWithdraw = users[currentUser].totalWithdraw || 0;
+                transactions = users[currentUser].transactions || [];
+            }
+        }
+        
+        // Login
+        function login() {
+            console.log('🔐 Login attempt');
+            
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) {
+                showNotification('Username dan password harus diisi!', 'error');
+                return;
+            }
+            
+            // Check VIP
+            if (VIP_ACCOUNTS[username]) {
+                if (VIP_ACCOUNTS[username].password === password) {
+                    currentUser = username;
+                    localStorage.setItem('currentUser', username);
+                    
+                    loadData();
+                    authScreen.classList.add('hidden');
+                    appScreen.classList.remove('hidden');
+                    updateDisplay();
+                    renderTransactions();
+                    
+                    showNotification('Selamat datang, ' + VIP_ACCOUNTS[username].name + '! 👑', 'success');
+                    return;
+                }
+            }
+            
+            // Check regular users
+            const users = JSON.parse(localStorage.getItem('bankAppUsers') || '{}');
+            if (users[username] && users[username].password === password) {
+                currentUser = username;
+                localStorage.setItem('currentUser', username);
+                
+                loadData();
+                authScreen.classList.add('hidden');
+                appScreen.classList.remove('hidden');
+                updateDisplay();
+                renderTransactions();
+                
+                showNotification('Login berhasil!', 'success');
+            } else {
+                showNotification('Username atau password salah!', 'error');
+            }
+        }
+        
+        // Logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                saveData();
+                localStorage.removeItem('currentUser');
+                
+                currentUser = null;
+                balance = 0;
+                totalDeposit = 0;
+                totalWithdraw = 0;
+                transactions = [];
+                
+                authScreen.classList.remove('hidden');
+                appScreen.classList.add('hidden');
+                
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                
+                showNotification('Logout berhasil!', 'success');
+            }
+        }
+        
+        // Deposit
+        function deposit() {
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+            
+            if (!amount || amount <= 0) {
+                showNotification('Masukkan jumlah yang valid!', 'error');
+                return;
+            }
+            
+            balance += amount;
+            totalDeposit += amount;
+            
+            transactions.unshift({
+                type: 'deposit',
+                amount: amount,
+                date: new Date().toLocaleString('id-ID'),
+                balanceAfter: balance
+            });
+            
+            updateDisplay();
+            renderTransactions();
+            saveData();
+            
+            document.getElementById('depositAmount').value = '';
+            showNotification('Berhasil menyetor Rp ' + formatCurrency(amount), 'success');
+        }
+        
+        // Withdraw
+        function withdraw() {
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            
+            if (!amount || amount <= 0) {
+                showNotification('Masukkan jumlah yang valid!', 'error');
+                return;
+            }
+            
+            if (amount > balance) {
+                showNotification('Saldo tidak mencukupi!', 'error');
+                return;
+            }
+            
+            balance -= amount;
+            totalWithdraw += amount;
+            
+            transactions.unshift({
+                type: 'withdraw',
+                amount: amount,
+                date: new Date().toLocaleString('id-ID'),
+                balanceAfter: balance
+            });
+            
+            updateDisplay();
+            renderTransactions();
+            saveData();
+            
+            document.getElementById('withdrawAmount').value = '';
+            showNotification('Berhasil menarik Rp ' + formatCurrency(amount), 'success');
+        }
+        
+        // Event listeners
+        loginBtn.addEventListener('click', login);
+        logoutBtn.addEventListener('click', logout);
+        depositBtn.addEventListener('click', deposit);
+        withdrawBtn.addEventListener('click', withdraw);
+        
+        // Enter key support
+        document.getElementById('loginPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') login();
+        });
+        
+        // Check if already logged in
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            currentUser = savedUser;
+            loadData();
+            authScreen.classList.add('hidden');
+            appScreen.classList.remove('hidden');
+            updateDisplay();
+            renderTransactions();
+        }
+        
+        console.log('✅ INVANKRI Ready!');
     </script>
 </body>
 </html>
