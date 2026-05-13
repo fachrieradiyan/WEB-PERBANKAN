@@ -188,7 +188,6 @@
                                 id="loginPassword" 
                                 placeholder="Masukkan password"
                                 class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-gray-900"
-                                onkeypress="if(event.key === 'Enter') login()"
                             >
                         </div>
                         <div class="flex items-center">
@@ -203,7 +202,8 @@
                             </label>
                         </div>
                         <button 
-                            onclick="login()" 
+                            id="loginBtn"
+                            type="button"
                             class="w-full bg-accent hover:bg-green-600 text-white font-bold py-2.5 rounded-xl transition duration-200 transform hover:scale-[1.02]">
                             <i class="fas fa-sign-in-alt mr-2"></i>Masuk
                         </button>
@@ -1008,6 +1008,43 @@
                 destroy() {}
             };
         }
+        
+        // CRITICAL FIX: Setup login button event listener after DOM loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔧 Setting up login button event listener...');
+            
+            const loginBtn = document.getElementById('loginBtn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('🔐 Login button clicked!');
+                    
+                    // Call login function from main.js
+                    if (typeof login === 'function') {
+                        login();
+                    } else {
+                        console.error('❌ login() function not found in main.js');
+                        alert('Error: Login function tidak ditemukan. Silakan refresh halaman.');
+                    }
+                });
+                console.log('✅ Login button event listener attached!');
+            } else {
+                console.error('❌ Login button not found!');
+            }
+            
+            // Also setup Enter key on password field
+            const passwordField = document.getElementById('loginPassword');
+            if (passwordField) {
+                passwordField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (typeof login === 'function') {
+                            login();
+                        }
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
