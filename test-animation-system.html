@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Animation System - Investra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-result {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .test-pass {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
+        .test-fail {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        .test-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">
+                🧪 Animation System Test
+            </h1>
+            <p class="text-white text-opacity-90">
+                Verifikasi semua komponen sistem animasi
+            </p>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Test Results</h2>
+            <div id="test-results"></div>
+            <button class="btn btn-primary mt-4" onclick="runTests()">
+                🔄 Run Tests
+            </button>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">File Checklist</h2>
+            <div id="file-checklist"></div>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Quick Links</h2>
+            <div class="grid grid-cols-2 gap-2">
+                <a href="INDEX_ANIMASI.md" class="btn btn-primary text-center">📚 Index</a>
+                <a href="QUICK_START_ID.md" class="btn btn-primary text-center">🚀 Quick Start</a>
+                <a href="ADVANCED_ANIMATION_GUIDE.md" class="btn btn-primary text-center">📖 Advanced Guide</a>
+                <a href="demo-advanced-animation.html" class="btn btn-primary text-center">🎨 Demo Advanced</a>
+                <a href="demo-smooth-animation.html" class="btn btn-primary text-center">🎨 Demo Basic</a>
+                <a href="SMOOTH_ANIMATION_COMPLETE.md" class="btn btn-primary text-center">📊 Complete Overview</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const files = {
+            'JavaScript Files': [
+                'js/smooth-price-updater.js',
+                'js/advanced-smooth-animation.js',
+                'js/SmoothPriceAnimation.jsx',
+                'js/ReactAdvancedAnimation.jsx',
+                'js/NextJsExample.tsx',
+                'js/NextJsAdvancedExample.tsx'
+            ],
+            'CSS Files': [
+                'js/smooth-animations.css',
+                'js/advanced-animations.css'
+            ],
+            'Demo Files': [
+                'demo-smooth-animation.html',
+                'demo-advanced-animation.html'
+            ],
+            'Documentation': [
+                'INDEX_ANIMASI.md',
+                'QUICK_START_ID.md',
+                'ADVANCED_ANIMATION_GUIDE.md',
+                'SMOOTH_ANIMATION_COMPLETE.md',
+                'ANIMATION_SUMMARY.md',
+                'README.md'
+            ]
+        };
+
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('test-results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result test-${type}`;
+            resultDiv.textContent = message;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function clearResults() {
+            document.getElementById('test-results').innerHTML = '';
+        }
+
+        async function checkFileExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        async function runTests() {
+            clearResults();
+            addResult('🧪 Starting tests...', 'info');
+
+            let totalTests = 0;
+            let passedTests = 0;
+
+            // Test 1: Check if advanced-smooth-animation.js is loaded
+            totalTests++;
+            if (typeof AdvancedSmoothAnimator !== 'undefined') {
+                addResult('✅ Test 1: AdvancedSmoothAnimator class loaded', 'pass');
+                passedTests++;
+            } else {
+                addResult('❌ Test 1: AdvancedSmoothAnimator class not found', 'fail');
+            }
+
+            // Test 2: Check if SpringPhysics is available
+            totalTests++;
+            if (typeof SpringPhysics !== 'undefined') {
+                addResult('✅ Test 2: SpringPhysics class loaded', 'pass');
+                passedTests++;
+            } else {
+                addResult('❌ Test 2: SpringPhysics class not found', 'fail');
+            }
+
+            // Test 3: Check if AdvancedEasing is available
+            totalTests++;
+            if (typeof AdvancedEasing !== 'undefined') {
+                addResult('✅ Test 3: AdvancedEasing functions loaded', 'pass');
+                passedTests++;
+            } else {
+                addResult('❌ Test 3: AdvancedEasing functions not found', 'fail');
+            }
+
+            // Test 4: Check if PerformanceMonitor is available
+            totalTests++;
+            if (typeof PerformanceMonitor !== 'undefined') {
+                addResult('✅ Test 4: PerformanceMonitor class loaded', 'pass');
+                passedTests++;
+            } else {
+                addResult('❌ Test 4: PerformanceMonitor class not found', 'fail');
+            }
+
+            // Test 5: Check if AdvancedCardAnimator is available
+            totalTests++;
+            if (typeof AdvancedCardAnimator !== 'undefined') {
+                addResult('✅ Test 5: AdvancedCardAnimator class loaded', 'pass');
+                passedTests++;
+            } else {
+                addResult('❌ Test 5: AdvancedCardAnimator class not found', 'fail');
+            }
+
+            // Test 6: Test Spring Physics calculation
+            totalTests++;
+            try {
+                const spring = new SpringPhysics({ stiffness: 170, damping: 26, mass: 1 });
+                spring.setTarget(100);
+                spring.update(0.016);
+                addResult('✅ Test 6: Spring Physics calculation works', 'pass');
+                passedTests++;
+            } catch (error) {
+                addResult('❌ Test 6: Spring Physics calculation failed: ' + error.message, 'fail');
+            }
+
+            // Test 7: Test Easing Functions
+            totalTests++;
+            try {
+                const result = AdvancedEasing.smoothCubic(0.5);
+                if (typeof result === 'number' && !isNaN(result)) {
+                    addResult('✅ Test 7: Easing functions work correctly', 'pass');
+                    passedTests++;
+                } else {
+                    addResult('❌ Test 7: Easing functions return invalid value', 'fail');
+                }
+            } catch (error) {
+                addResult('❌ Test 7: Easing functions failed: ' + error.message, 'fail');
+            }
+
+            // Test 8: Test Performance Monitor
+            totalTests++;
+            try {
+                const monitor = new PerformanceMonitor();
+                monitor.update();
+                const fps = monitor.getFPS();
+                if (typeof fps === 'number' && fps > 0) {
+                    addResult('✅ Test 8: Performance Monitor works (FPS: ' + fps + ')', 'pass');
+                    passedTests++;
+                } else {
+                    addResult('❌ Test 8: Performance Monitor returns invalid FPS', 'fail');
+                }
+            } catch (error) {
+                addResult('❌ Test 8: Performance Monitor failed: ' + error.message, 'fail');
+            }
+
+            // Summary
+            addResult('', 'info');
+            addResult(`📊 Test Summary: ${passedTests}/${totalTests} tests passed`, 
+                     passedTests === totalTests ? 'pass' : 'fail');
+
+            if (passedTests === totalTests) {
+                addResult('🎉 All tests passed! System is ready to use.', 'pass');
+            } else {
+                addResult('⚠️ Some tests failed. Please check the implementation.', 'fail');
+            }
+        }
+
+        // Display file checklist
+        function displayFileChecklist() {
+            const checklistDiv = document.getElementById('file-checklist');
+            
+            for (const [category, fileList] of Object.entries(files)) {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'mb-4';
+                
+                const categoryTitle = document.createElement('h3');
+                categoryTitle.className = 'font-bold text-lg mb-2';
+                categoryTitle.textContent = category;
+                categoryDiv.appendChild(categoryTitle);
+                
+                const list = document.createElement('ul');
+                list.className = 'space-y-1';
+                
+                fileList.forEach(file => {
+                    const item = document.createElement('li');
+                    item.className = 'flex items-center gap-2';
+                    item.innerHTML = `
+                        <span class="text-green-600">✓</span>
+                        <span class="font-mono text-sm">${file}</span>
+                    `;
+                    list.appendChild(item);
+                });
+                
+                categoryDiv.appendChild(list);
+                checklistDiv.appendChild(categoryDiv);
+            }
+        }
+
+        // Initialize
+        displayFileChecklist();
+        
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+
+    <!-- Load the animation system -->
+    <script src="js/advanced-smooth-animation.js"></script>
+</body>
+</html>

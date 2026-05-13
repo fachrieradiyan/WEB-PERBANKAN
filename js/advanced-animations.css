@@ -1,0 +1,571 @@
+/**
+ * Advanced Smooth Animations CSS
+ * Styling untuk animasi yang lebih smooth dengan GPU acceleration
+ */
+
+/* ===== BASE STYLES ===== */
+
+.smooth-price {
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, opacity;
+  transform: translateZ(0); /* GPU acceleration */
+}
+
+/* ===== PRICE ANIMATION STATES ===== */
+
+.price-animate-up {
+  animation: priceUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #10b981;
+}
+
+.price-animate-down {
+  animation: priceDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #ef4444;
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+
+@keyframes priceUp {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.08) translateY(-3px);
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+  }
+  70% {
+    transform: scale(1.04) translateY(-1px);
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    text-shadow: none;
+  }
+}
+
+@keyframes priceDown {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(0.92) translateY(3px);
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+  }
+  70% {
+    transform: scale(0.96) translateY(1px);
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    text-shadow: none;
+  }
+}
+
+/* ===== DIRECTION INDICATORS ===== */
+
+.direction-indicator {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.direction-indicator.up {
+  color: #10b981;
+  animation: bounceUp 0.6s ease-out;
+}
+
+.direction-indicator.down {
+  color: #ef4444;
+  animation: bounceDown 0.6s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceUp {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* ===== GLOW EFFECTS ===== */
+
+.with-glow.price-animate-up {
+  text-shadow: 
+    0 0 10px rgba(16, 185, 129, 0.6),
+    0 0 20px rgba(16, 185, 129, 0.4),
+    0 0 30px rgba(16, 185, 129, 0.2);
+}
+
+.with-glow.price-animate-down {
+  text-shadow: 
+    0 0 10px rgba(239, 68, 68, 0.6),
+    0 0 20px rgba(239, 68, 68, 0.4),
+    0 0 30px rgba(239, 68, 68, 0.2);
+}
+
+/* ===== CARD ANIMATIONS ===== */
+
+.spring-animated-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, box-shadow;
+  transform: translateZ(0); /* GPU acceleration */
+}
+
+.spring-animated-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== CARD STATES ===== */
+
+.card-animate-up {
+  animation: cardUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-animate-down {
+  animation: cardDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardUp {
+  0% {
+    transform: scale(1) translateY(0) rotateZ(0deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+  30% {
+    transform: scale(1.08) translateY(-5px) rotateZ(2deg);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.8), 0 10px 30px rgba(16, 185, 129, 0.3);
+    background-color: rgba(16, 185, 129, 0.15);
+  }
+  70% {
+    transform: scale(1.04) translateY(-2px) rotateZ(1deg);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+    background-color: rgba(16, 185, 129, 0.08);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotateZ(0deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes cardDown {
+  0% {
+    transform: scale(1) translateY(0) rotateZ(0deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+  30% {
+    transform: scale(0.96) translateY(3px) rotateZ(-2deg);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.8), 0 10px 30px rgba(239, 68, 68, 0.3);
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+  70% {
+    transform: scale(0.98) translateY(1px) rotateZ(-1deg);
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+    background-color: rgba(239, 68, 68, 0.08);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotateZ(0deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+/* ===== PULSE ANIMATION ===== */
+
+.pulse-animation {
+  animation: smoothPulse 0.6s ease-in-out;
+}
+
+@keyframes smoothPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+/* ===== PARALLAX EFFECT ===== */
+
+.parallax-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-card:hover {
+  transform: scale(1.02);
+}
+
+/* ===== 3D TRANSFORM EFFECTS ===== */
+
+.transform-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.transform-3d-child {
+  transform: translateZ(20px);
+}
+
+/* ===== LOADING STATES ===== */
+
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ===== SKELETON LOADING ===== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== FADE ANIMATIONS ===== */
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ===== SLIDE ANIMATIONS ===== */
+
+.slide-in-left {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== SCALE ANIMATIONS ===== */
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.scale-out {
+  animation: scaleOut 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* ===== ROTATE ANIMATIONS ===== */
+
+.rotate-in {
+  animation: rotateIn 0.5s ease-out;
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* ===== BOUNCE ANIMATIONS ===== */
+
+.bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===== SHAKE ANIMATION ===== */
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* ===== FLIP ANIMATION ===== */
+
+.flip {
+  animation: flip 0.6s ease-in-out;
+}
+
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(0);
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* GPU Acceleration untuk semua animated elements */
+.smooth-price,
+.spring-animated-card,
+.parallax-card,
+.transform-3d {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+@media (max-width: 768px) {
+  .price-animate-up,
+  .price-animate-down {
+    animation-duration: 0.6s;
+  }
+  
+  .card-animate-up,
+  .card-animate-down {
+    animation-duration: 0.9s;
+  }
+  
+  .spring-animated-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #2d2d2d 25%,
+      #3d3d3d 50%,
+      #2d2d2d 75%
+    );
+  }
+  
+  .loading-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 20%,
+      rgba(255, 255, 255, 0.2) 60%,
+      rgba(255, 255, 255, 0)
+    );
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.no-animation {
+  animation: none !important;
+  transition: none !important;
+}
+
+.fast-animation {
+  animation-duration: 0.3s !important;
+  transition-duration: 0.3s !important;
+}
+
+.slow-animation {
+  animation-duration: 1.5s !important;
+  transition-duration: 1.5s !important;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .smooth-price,
+  .spring-animated-card,
+  .parallax-card {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

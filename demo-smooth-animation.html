@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Smooth Animation - Investra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="js/smooth-animations.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-display {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            margin: 0.25rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.4);
+        }
+        
+        .stock-card-demo {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .stock-card-demo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .easing-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .easing-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .easing-btn.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        
+        .easing-btn:hover {
+            border-color: #667eea;
+        }
+        
+        .control-panel {
+            background: #f9fafb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .slider-container {
+            margin: 1rem 0;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-bold text-white mb-2">
+                <i class="fas fa-chart-line mr-3"></i>
+                Smooth Animation Demo
+            </h1>
+            <p class="text-white text-opacity-90 text-lg">
+                Demonstrasi animasi naik turun yang lebih smooth untuk Investra
+            </p>
+        </div>
+
+        <!-- Demo 1: Basic Price Animation -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-wallet text-blue-500"></i>
+                Demo 1: Basic Price Animation
+            </div>
+            <p class="demo-description">
+                Klik tombol untuk melihat animasi smooth pada perubahan harga
+            </p>
+            
+            <div class="price-display" id="demo1-price">
+                Rp 1,000,000
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-success" onclick="demo1Increase()">
+                    <i class="fas fa-arrow-up mr-2"></i>+Rp 500,000
+                </button>
+                <button class="btn btn-danger" onclick="demo1Decrease()">
+                    <i class="fas fa-arrow-down mr-2"></i>-Rp 500,000
+                </button>
+                <button class="btn btn-primary" onclick="demo1Random()">
+                    <i class="fas fa-random mr-2"></i>Random
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo 2: Easing Functions -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-bezier-curve text-purple-500"></i>
+                Demo 2: Easing Functions
+            </div>
+            <p class="demo-description">
+                Pilih easing function untuk melihat perbedaan animasi
+            </p>
+            
+            <div class="easing-selector">
+                <button class="easing-btn active" data-easing="easeInOutCubic" onclick="selectEasing(this)">
+                    Cubic (Smooth)
+                </button>
+                <button class="easing-btn" data-easing="easeOutElastic" onclick="selectEasing(this)">
+                    Elastic (Bouncy)
+                </button>
+                <button class="easing-btn" data-easing="easeOutBounce" onclick="selectEasing(this)">
+                    Bounce
+                </button>
+                <button class="easing-btn" data-easing="easeOutExpo" onclick="selectEasing(this)">
+                    Exponential
+                </button>
+                <button class="easing-btn" data-easing="easeOutBack" onclick="selectEasing(this)">
+                    Back (Overshoot)
+                </button>
+                <button class="easing-btn" data-easing="easeInOutSine" onclick="selectEasing(this)">
+                    Sine (Smooth)
+                </button>
+            </div>
+            
+            <div class="price-display" id="demo2-price">
+                Rp 5,000,000
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="demo2Animate()">
+                    <i class="fas fa-play mr-2"></i>Test Animation
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo 3: Stock Card Animation -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-chart-bar text-green-500"></i>
+                Demo 3: Stock Card Animation
+            </div>
+            <p class="demo-description">
+                Simulasi perubahan harga saham dengan animasi card
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <!-- BBCA -->
+                <div class="stock-card-demo" id="card-bbca">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-3xl">🏦</div>
+                        <div>
+                            <h3 class="font-bold text-lg">BBCA</h3>
+                            <p class="text-sm text-gray-500">Bank Central Asia</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold mb-2">
+                        <span id="price-bbca" class="smooth-price">Rp 9,500</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold" id="change-bbca">+0.00%</span>
+                    </div>
+                </div>
+
+                <!-- BTC -->
+                <div class="stock-card-demo" id="card-btc">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-3xl">🟠</div>
+                        <div>
+                            <h3 class="font-bold text-lg">BTC</h3>
+                            <p class="text-sm text-gray-500">Bitcoin</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold mb-2">
+                        <span id="price-btc" class="smooth-price">Rp 950,000,000</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold" id="change-btc">+0.00%</span>
+                    </div>
+                </div>
+
+                <!-- ETH -->
+                <div class="stock-card-demo" id="card-eth">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-3xl">⬢</div>
+                        <div>
+                            <h3 class="font-bold text-lg">ETH</h3>
+                            <p class="text-sm text-gray-500">Ethereum</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold mb-2">
+                        <span id="price-eth" class="smooth-price">Rp 52,000,000</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold" id="change-eth">+0.00%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="demo3Start()" id="demo3-btn">
+                    <i class="fas fa-play mr-2"></i>Start Live Simulation
+                </button>
+                <button class="btn btn-danger" onclick="demo3Stop()" style="display: none;" id="demo3-stop-btn">
+                    <i class="fas fa-stop mr-2"></i>Stop Simulation
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo 4: Customization -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-sliders-h text-orange-500"></i>
+                Demo 4: Customization
+            </div>
+            <p class="demo-description">
+                Sesuaikan parameter animasi sesuai keinginan
+            </p>
+            
+            <div class="control-panel">
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Duration (ms)</span>
+                        <span id="duration-value">800</span>
+                    </div>
+                    <input type="range" min="200" max="2000" value="800" class="slider" id="duration-slider" oninput="updateDuration(this.value)">
+                </div>
+                
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Glow Intensity</span>
+                        <span id="glow-value">20</span>
+                    </div>
+                    <input type="range" min="0" max="50" value="20" class="slider" id="glow-slider" oninput="updateGlow(this.value)">
+                </div>
+                
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Scale Intensity</span>
+                        <span id="scale-value">0.05</span>
+                    </div>
+                    <input type="range" min="0" max="20" value="5" class="slider" id="scale-slider" oninput="updateScale(this.value)">
+                </div>
+            </div>
+            
+            <div class="price-display" id="demo4-price">
+                Rp 10,000,000
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="demo4Test()">
+                    <i class="fas fa-vial mr-2"></i>Test Custom Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-white mt-8">
+            <p class="text-lg font-semibold mb-2">
+                <i class="fas fa-code mr-2"></i>
+                Smooth Animation System v1.0
+            </p>
+            <p class="text-white text-opacity-75">
+                Dibuat untuk Investra - Platform Investasi & Perbankan Modern
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/smooth-price-updater.js"></script>
+    <script>
+        // Demo 1: Basic Price Animation
+        let demo1Value = 1000000;
+        const demo1Animator = new SmoothPriceAnimator(document.getElementById('demo1-price'), {
+            duration: 800,
+            easing: 'easeInOutCubic',
+            decimals: 0,
+            prefix: 'Rp ',
+            useGlow: true
+        });
+
+        function demo1Increase() {
+            demo1Value += 500000;
+            demo1Animator.animateTo(demo1Value);
+        }
+
+        function demo1Decrease() {
+            demo1Value -= 500000;
+            if (demo1Value < 0) demo1Value = 0;
+            demo1Animator.animateTo(demo1Value);
+        }
+
+        function demo1Random() {
+            demo1Value = Math.floor(Math.random() * 10000000);
+            demo1Animator.animateTo(demo1Value);
+        }
+
+        // Demo 2: Easing Functions
+        let demo2Value = 5000000;
+        let currentEasing = 'easeInOutCubic';
+        const demo2Animator = new SmoothPriceAnimator(document.getElementById('demo2-price'), {
+            duration: 1200,
+            easing: currentEasing,
+            decimals: 0,
+            prefix: 'Rp ',
+            useGlow: true
+        });
+
+        function selectEasing(btn) {
+            document.querySelectorAll('.easing-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentEasing = btn.dataset.easing;
+            demo2Animator.options.easing = currentEasing;
+        }
+
+        function demo2Animate() {
+            demo2Value = Math.floor(Math.random() * 10000000) + 1000000;
+            demo2Animator.animateTo(demo2Value);
+        }
+
+        // Demo 3: Stock Card Animation
+        const stocks = {
+            bbca: { price: 9500, basePrice: 9500 },
+            btc: { price: 950000000, basePrice: 950000000 },
+            eth: { price: 52000000, basePrice: 52000000 }
+        };
+
+        const stockAnimators = {};
+        const cardAnimators = {};
+
+        ['bbca', 'btc', 'eth'].forEach(id => {
+            stockAnimators[id] = new SmoothPriceAnimator(document.getElementById(`price-${id}`), {
+                duration: 800,
+                easing: 'easeInOutCubic',
+                decimals: 0,
+                prefix: 'Rp ',
+                useGlow: true
+            });
+            
+            cardAnimators[id] = new CardAnimator(document.getElementById(`card-${id}`), {
+                animationDuration: 1200,
+                scaleIntensity: 0.05,
+                glowIntensity: 20
+            });
+        });
+
+        let demo3Interval = null;
+
+        function demo3Start() {
+            document.getElementById('demo3-btn').style.display = 'none';
+            document.getElementById('demo3-stop-btn').style.display = 'inline-block';
+            
+            demo3Interval = setInterval(() => {
+                ['bbca', 'btc', 'eth'].forEach(id => {
+                    const stock = stocks[id];
+                    const change = (Math.random() - 0.5) * 0.05;
+                    const newPrice = stock.price * (1 + change);
+                    
+                    stock.price = newPrice;
+                    stockAnimators[id].animateTo(newPrice);
+                    
+                    const changePercent = ((newPrice - stock.basePrice) / stock.basePrice * 100).toFixed(2);
+                    const changeElement = document.getElementById(`change-${id}`);
+                    changeElement.textContent = (changePercent >= 0 ? '+' : '') + changePercent + '%';
+                    changeElement.style.color = changePercent >= 0 ? '#10b981' : '#ef4444';
+                    
+                    if (change > 0) {
+                        cardAnimators[id].animateUp();
+                    } else {
+                        cardAnimators[id].animateDown();
+                    }
+                });
+            }, 2000);
+        }
+
+        function demo3Stop() {
+            clearInterval(demo3Interval);
+            document.getElementById('demo3-btn').style.display = 'inline-block';
+            document.getElementById('demo3-stop-btn').style.display = 'none';
+        }
+
+        // Demo 4: Customization
+        let demo4Duration = 800;
+        let demo4Glow = 20;
+        let demo4Scale = 0.05;
+        let demo4Value = 10000000;
+
+        const demo4Element = document.getElementById('demo4-price');
+        const demo4Animator = new SmoothPriceAnimator(demo4Element, {
+            duration: demo4Duration,
+            easing: 'easeInOutCubic',
+            decimals: 0,
+            prefix: 'Rp ',
+            useGlow: true
+        });
+
+        function updateDuration(value) {
+            demo4Duration = parseInt(value);
+            document.getElementById('duration-value').textContent = value;
+            demo4Animator.options.duration = demo4Duration;
+        }
+
+        function updateGlow(value) {
+            demo4Glow = parseInt(value);
+            document.getElementById('glow-value').textContent = value;
+        }
+
+        function updateScale(value) {
+            demo4Scale = parseInt(value) / 100;
+            document.getElementById('scale-value').textContent = demo4Scale.toFixed(2);
+        }
+
+        function demo4Test() {
+            demo4Value = Math.floor(Math.random() * 50000000) + 1000000;
+            demo4Animator.animateTo(demo4Value);
+            
+            // Apply custom glow and scale
+            setTimeout(() => {
+                demo4Element.style.boxShadow = `0 0 ${demo4Glow}px rgba(16, 185, 129, 0.6)`;
+                demo4Element.style.transform = `scale(${1 + demo4Scale})`;
+                
+                setTimeout(() => {
+                    demo4Element.style.boxShadow = '';
+                    demo4Element.style.transform = 'scale(1)';
+                }, demo4Duration);
+            }, 50);
+        }
+
+        // Initialize
+        console.log('🎨 Demo loaded successfully!');
+    </script>
+</body>
+</html>

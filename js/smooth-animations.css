@@ -1,0 +1,444 @@
+/**
+ * Smooth Animation Styles
+ * CSS untuk animasi naik turun yang lebih smooth
+ * Compatible dengan semua browser modern
+ */
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+
+/* Animasi naik yang lebih smooth dengan multiple stages */
+@keyframes smoothPriceUp {
+  0% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+  15% {
+    background-color: rgba(16, 185, 129, 0.15);
+    transform: scale(1.02);
+  }
+  30% {
+    background-color: rgba(16, 185, 129, 0.3);
+    transform: scale(1.05);
+  }
+  50% {
+    background-color: rgba(16, 185, 129, 0.4);
+    transform: scale(1.03);
+  }
+  70% {
+    background-color: rgba(16, 185, 129, 0.2);
+    transform: scale(1.01);
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+/* Animasi turun yang lebih smooth dengan multiple stages */
+@keyframes smoothPriceDown {
+  0% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+  15% {
+    background-color: rgba(239, 68, 68, 0.15);
+    transform: scale(0.98);
+  }
+  30% {
+    background-color: rgba(239, 68, 68, 0.3);
+    transform: scale(0.95);
+  }
+  50% {
+    background-color: rgba(239, 68, 68, 0.4);
+    transform: scale(0.97);
+  }
+  70% {
+    background-color: rgba(239, 68, 68, 0.2);
+    transform: scale(0.99);
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+/* Animasi glow untuk harga naik */
+@keyframes glowUp {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* Animasi glow untuk harga turun */
+@keyframes glowDown {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+  }
+}
+
+/* Animasi bounce smooth */
+@keyframes smoothBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  75% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Animasi pulse yang lebih halus */
+@keyframes smoothPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Animasi shimmer untuk loading */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Animasi fade in smooth */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi slide up smooth */
+@keyframes smoothSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Class untuk harga naik - versi smooth */
+.price-animate-up {
+  animation: smoothPriceUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #10B981 !important;
+  font-weight: 600;
+}
+
+/* Class untuk harga turun - versi smooth */
+.price-animate-down {
+  animation: smoothPriceDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #EF4444 !important;
+  font-weight: 600;
+}
+
+/* Transition smooth untuk semua perubahan harga */
+.smooth-price {
+  display: inline-block;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, color;
+}
+
+/* Glow effect untuk harga naik */
+.price-animate-up.with-glow {
+  animation: smoothPriceUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+             glowUp 1.2s ease-in-out;
+}
+
+/* Glow effect untuk harga turun */
+.price-animate-down.with-glow {
+  animation: smoothPriceDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+             glowDown 1.2s ease-in-out;
+}
+
+/* Direction indicator (panah naik/turun) */
+.direction-indicator {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.85em;
+  animation: smoothBounce 0.6s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+.direction-indicator.up {
+  color: #10B981;
+}
+
+.direction-indicator.down {
+  color: #EF4444;
+}
+
+/* ===== CARD ANIMATIONS ===== */
+
+/* Animated price card */
+.animated-price-card {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.animated-price-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.animated-price-card:hover::before {
+  left: 100%;
+}
+
+.animated-price-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.animated-price-card.hovered {
+  border: 2px solid #10B981;
+}
+
+/* Card elements */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  font-size: 2rem;
+  animation: smoothPulse 2s ease-in-out infinite;
+}
+
+.card-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.75rem 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.card-change.positive {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+}
+
+.card-change.negative {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+}
+
+.change-icon {
+  font-size: 0.75rem;
+  animation: smoothBounce 1s ease-in-out infinite;
+}
+
+/* ===== RESPONSIVE ANIMATIONS ===== */
+
+/* Reduce motion untuk accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .animated-price-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  .price-animate-up,
+  .price-animate-down {
+    animation-duration: 0.8s;
+  }
+}
+
+/* ===== LOADING STATES ===== */
+
+.price-loading {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 0.25rem;
+  height: 1.5rem;
+  width: 100%;
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+
+.dark .animated-price-card {
+  background: #1E293B;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dark .animated-price-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dark .price-loading {
+  background: linear-gradient(
+    90deg,
+    #2d3748 25%,
+    #4a5568 50%,
+    #2d3748 75%
+  );
+  background-size: 1000px 100%;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* GPU acceleration untuk animasi yang lebih smooth */
+.smooth-price,
+.animated-price-card,
+.price-animate-up,
+.price-animate-down {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== CUSTOM EASING FUNCTIONS ===== */
+
+/* Cubic bezier untuk smooth animations */
+.ease-smooth {
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ease-bounce {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.ease-elastic {
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ===== ADDITIONAL EFFECTS ===== */
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  animation: ripple 0.6s ease-out;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}

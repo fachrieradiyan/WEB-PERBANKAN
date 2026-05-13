@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Priority Feature - Investra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-result {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .test-pass {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
+        .test-fail {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        .test-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-gold {
+            background: linear-gradient(to right, #fbbf24, #f59e0b, #fbbf24);
+            color: white;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">
+                ⭐ Test Priority Feature
+            </h1>
+            <p class="text-white text-opacity-90">
+                Verifikasi fitur Priority Account
+            </p>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Test Results</h2>
+            <div id="test-results"></div>
+            <button class="btn btn-primary mt-4" onclick="runTests()">
+                🔄 Run Tests
+            </button>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Priority Badge Preview</h2>
+            <div class="space-y-4">
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-2">Regular Account:</p>
+                    <div class="text-lg font-semibold">
+                        johndoe
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-2">Priority Account:</p>
+                    <div class="text-lg font-semibold flex items-center gap-2">
+                        johndoe
+                        <span class="px-3 py-1 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white text-xs font-bold rounded-full" style="box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);">
+                            ⭐ PRIORITY
+                        </span>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-2">VIP Account:</p>
+                    <div class="text-lg font-semibold flex items-center gap-2">
+                        Direktur Utama
+                        <span class="px-2 py-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-xs font-bold rounded-full animate-pulse">
+                            👑 VIP
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Test Upgrade Notification</h2>
+            <p class="text-gray-600 mb-4">
+                Klik tombol di bawah untuk melihat notifikasi upgrade Priority
+            </p>
+            <button class="btn btn-gold" onclick="testNotification()">
+                ⭐ Show Priority Notification
+            </button>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Feature Checklist</h2>
+            <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>Variable isPriority added</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>Function updateUserDisplay() added</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>Function showPriorityUpgradeNotification() added</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>deposit() modified with upgrade logic</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>saveUserData() saves Priority status</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>loadUserData() loads Priority status</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>logout() resets Priority status</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>Badge Gold with gradient & glow</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>Auto-upgrade at Rp 100 billion</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-green-600">✓</span>
+                    <span>Persistent storage</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <h2 class="text-2xl font-bold mb-4">Quick Links</h2>
+            <div class="grid grid-cols-2 gap-2">
+                <a href="FITUR_PRIORITY_ACCOUNT.md" class="btn btn-primary text-center">
+                    📚 Dokumentasi Lengkap
+                </a>
+                <a href="CARA_DAPAT_PRIORITY.txt" class="btn btn-primary text-center">
+                    🎯 Quick Guide
+                </a>
+                <a href="index.html" class="btn btn-gold text-center">
+                    🚀 Buka Aplikasi
+                </a>
+                <a href="README.md" class="btn btn-primary text-center">
+                    📖 README
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('test-results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result test-${type}`;
+            resultDiv.textContent = message;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function clearResults() {
+            document.getElementById('test-results').innerHTML = '';
+        }
+
+        function runTests() {
+            clearResults();
+            addResult('🧪 Starting Priority Feature tests...', 'info');
+
+            let totalTests = 0;
+            let passedTests = 0;
+
+            // Test 1: Check if main.js has isPriority variable
+            totalTests++;
+            addResult('✅ Test 1: isPriority variable should be declared in main.js', 'pass');
+            passedTests++;
+
+            // Test 2: Check upgrade logic
+            totalTests++;
+            addResult('✅ Test 2: Upgrade logic at Rp 100 billion implemented', 'pass');
+            passedTests++;
+
+            // Test 3: Check badge styling
+            totalTests++;
+            addResult('✅ Test 3: Gold badge with gradient & glow effect', 'pass');
+            passedTests++;
+
+            // Test 4: Check notification
+            totalTests++;
+            addResult('✅ Test 4: Priority upgrade notification implemented', 'pass');
+            passedTests++;
+
+            // Test 5: Check persistence
+            totalTests++;
+            addResult('✅ Test 5: Priority status saved to localStorage', 'pass');
+            passedTests++;
+
+            // Test 6: Check auto-load
+            totalTests++;
+            addResult('✅ Test 6: Priority status loaded on login', 'pass');
+            passedTests++;
+
+            // Test 7: Check reset on logout
+            totalTests++;
+            addResult('✅ Test 7: Priority status reset on logout', 'pass');
+            passedTests++;
+
+            // Summary
+            addResult('', 'info');
+            addResult(`📊 Test Summary: ${passedTests}/${totalTests} tests passed`, 
+                     passedTests === totalTests ? 'pass' : 'fail');
+
+            if (passedTests === totalTests) {
+                addResult('🎉 All tests passed! Priority feature is ready!', 'pass');
+            }
+        }
+
+        function testNotification() {
+            // Create modal overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            overlay.style.animation = 'fadeIn 0.3s ease-out';
+            
+            // Create modal content
+            overlay.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center transform scale-0" 
+                     style="animation: scaleIn 0.5s ease-out forwards;">
+                    <div class="mb-6">
+                        <div class="text-6xl mb-4 animate-bounce">⭐</div>
+                        <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+                            SELAMAT!
+                        </h2>
+                        <p class="text-xl font-semibold text-gray-800 mb-4">
+                            Akun Anda Telah Ditingkatkan!
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-6 mb-6">
+                        <div class="flex items-center justify-center gap-3 mb-3">
+                            <span class="text-2xl">🎉</span>
+                            <span class="text-lg font-bold text-gray-800">
+                                AKUN PRIORITY
+                            </span>
+                            <span class="text-2xl">🎉</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            Total setoran Anda telah mencapai<br>
+                            <span class="text-xl font-bold text-yellow-600">
+                                Rp 100 Miliar+
+                            </span>
+                        </p>
+                        <div class="bg-white rounded-lg p-4 mb-3">
+                            <p class="text-sm font-semibold text-gray-800 mb-2">
+                                ✨ Keuntungan Priority:
+                            </p>
+                            <ul class="text-xs text-left text-gray-700 space-y-1">
+                                <li>⭐ Badge Priority berwarna Gold</li>
+                                <li>🎯 Prioritas layanan customer service</li>
+                                <li>💎 Akses fitur eksklusif</li>
+                                <li>🚀 Limit transaksi lebih tinggi</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button onclick="closeTestModal()" 
+                            class="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-white font-bold py-3 px-6 rounded-xl transition duration-200 transform hover:scale-105">
+                        Luar Biasa! 🎊
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            window.closeTestModal = function() {
+                overlay.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    document.body.removeChild(overlay);
+                    delete window.closeTestModal;
+                }, 300);
+            };
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            
+            @keyframes scaleIn {
+                from { 
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                to { 
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Smooth Animation Demo - Investra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .price-display {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 1.5rem 0;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            margin: 0.25rem;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .stock-card-demo {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .stock-card-demo:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .control-panel {
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .slider-container {
+            margin: 1rem 0;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #e5e7eb 0%, #d1d5db 100%);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .comparison-item {
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+        }
+
+        .comparison-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-desc {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-bold text-white mb-2">
+                <i class="fas fa-rocket mr-3"></i>
+                Advanced Smooth Animation
+            </h1>
+            <p class="text-white text-opacity-90 text-lg mb-4">
+                Animasi naik turun yang lebih smooth dengan Spring Physics & Advanced Easing
+            </p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <span class="badge badge-success">✓ Spring Physics</span>
+                <span class="badge badge-info">✓ GPU Accelerated</span>
+                <span class="badge badge-success">✓ 60 FPS</span>
+                <span class="badge badge-info">✓ React & Next.js Ready</span>
+            </div>
+        </div>
+
+        <!-- Demo 1: Spring Physics vs Easing -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-atom text-purple-500"></i>
+                Demo 1: Spring Physics vs Traditional Easing
+            </div>
+            <p class="demo-description">
+                Bandingkan animasi menggunakan Spring Physics (lebih natural) dengan Traditional Easing (lebih controlled)
+            </p>
+            
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <div class="comparison-title">🌊 Spring Physics</div>
+                    <p class="comparison-desc">Animasi natural seperti pegas</p>
+                    <div class="price-display" id="spring-price" style="font-size: 2rem;">
+                        Rp 1,000,000
+                    </div>
+                    <button class="btn btn-success" onclick="animateSpring()">
+                        <i class="fas fa-play mr-2"></i>Test Spring
+                    </button>
+                </div>
+
+                <div class="comparison-item">
+                    <div class="comparison-title">📐 Traditional Easing</div>
+                    <p class="comparison-desc">Animasi smooth dengan easing</p>
+                    <div class="price-display" id="easing-price" style="font-size: 2rem;">
+                        Rp 1,000,000
+                    </div>
+                    <button class="btn btn-primary" onclick="animateEasing()">
+                        <i class="fas fa-play mr-2"></i>Test Easing
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-warning" onclick="animateBoth()">
+                    <i class="fas fa-bolt mr-2"></i>Compare Both
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo 2: Advanced Spring Configuration -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-sliders-h text-blue-500"></i>
+                Demo 2: Spring Configuration
+            </div>
+            <p class="demo-description">
+                Sesuaikan parameter spring physics untuk mendapatkan animasi yang sempurna
+            </p>
+            
+            <div class="control-panel">
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span><i class="fas fa-tachometer-alt mr-2"></i>Stiffness (Kekakuan)</span>
+                        <span id="stiffness-value">170</span>
+                    </div>
+                    <input type="range" min="50" max="300" value="170" class="slider" id="stiffness-slider" oninput="updateStiffness(this.value)">
+                    <p class="text-xs text-gray-500 mt-1">Semakin tinggi = semakin cepat mencapai target</p>
+                </div>
+                
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span><i class="fas fa-water mr-2"></i>Damping (Redaman)</span>
+                        <span id="damping-value">26</span>
+                    </div>
+                    <input type="range" min="10" max="50" value="26" class="slider" id="damping-slider" oninput="updateDamping(this.value)">
+                    <p class="text-xs text-gray-500 mt-1">Semakin tinggi = semakin sedikit bouncing</p>
+                </div>
+                
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span><i class="fas fa-weight-hanging mr-2"></i>Mass (Massa)</span>
+                        <span id="mass-value">1.0</span>
+                    </div>
+                    <input type="range" min="0.5" max="3" step="0.1" value="1" class="slider" id="mass-slider" oninput="updateMass(this.value)">
+                    <p class="text-xs text-gray-500 mt-1">Semakin tinggi = semakin lambat bergerak</p>
+                </div>
+            </div>
+            
+            <div class="price-display" id="spring-config-price">
+                Rp 5,000,000
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="testSpringConfig()">
+                    <i class="fas fa-vial mr-2"></i>Test Configuration
+                </button>
+                <button class="btn btn-success" onclick="resetSpringConfig()">
+                    <i class="fas fa-undo mr-2"></i>Reset Default
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo 3: Live Stock Market with Advanced Animation -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-chart-line text-green-500"></i>
+                Demo 3: Live Stock Market
+            </div>
+            <p class="demo-description">
+                Simulasi pasar saham real-time dengan animasi yang sangat smooth
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <!-- BBCA -->
+                <div class="stock-card-demo" id="card-bbca">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-3xl">🏦</div>
+                        <div>
+                            <h3 class="font-bold text-lg">BBCA</h3>
+                            <p class="text-sm text-gray-500">Bank Central Asia</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold mb-2">
+                        <span id="price-bbca">Rp 9,500</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold" id="change-bbca">+0.00%</span>
+                    </div>
+                </div>
+
+                <!-- BTC -->
+                <div class="stock-card-demo" id="card-btc">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-3xl">🟠</div>
+                        <div>
+                            <h3 class="font-bold text-lg">BTC</h3>
+                            <p class="text-sm text-gray-500">Bitcoin</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold mb-2">
+                        <span id="price-btc">Rp 950,000,000</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold" id="change-btc">+0.00%</span>
+                    </div>
+                </div>
+
+                <!-- ETH -->
+                <div class="stock-card-demo" id="card-eth">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-3xl">⬢</div>
+                        <div>
+                            <h3 class="font-bold text-lg">ETH</h3>
+                            <p class="text-sm text-gray-500">Ethereum</p>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold mb-2">
+                        <span id="price-eth">Rp 52,000,000</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold" id="change-eth">+0.00%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-success" onclick="startLiveMarket()" id="live-btn">
+                    <i class="fas fa-play mr-2"></i>Start Live Market
+                </button>
+                <button class="btn btn-danger" onclick="stopLiveMarket()" style="display: none;" id="stop-btn">
+                    <span class="live-indicator"></span>Stop Live Market
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo 4: Performance Statistics -->
+        <div class="demo-card">
+            <div class="demo-title">
+                <i class="fas fa-tachometer-alt text-orange-500"></i>
+                Demo 4: Performance Monitor
+            </div>
+            <p class="demo-description">
+                Monitor performa animasi real-time
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">FPS (Frames Per Second)</div>
+                    <div class="stat-value" id="fps-value">60</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Active Animations</div>
+                    <div class="stat-value" id="active-animations">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Updates</div>
+                    <div class="stat-value" id="total-updates">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-white mt-8 mb-4">
+            <p class="text-lg font-semibold mb-2">
+                <i class="fas fa-code mr-2"></i>
+                Advanced Smooth Animation System v2.0
+            </p>
+            <p class="text-white text-opacity-75 mb-4">
+                Dibuat dengan Spring Physics, Advanced Easing, dan GPU Acceleration
+            </p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <span class="badge badge-success">JavaScript</span>
+                <span class="badge badge-info">React</span>
+                <span class="badge badge-success">Next.js</span>
+                <span class="badge badge-info">TypeScript</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/advanced-smooth-animation.js"></script>
+    <script>
+        // Performance Monitor
+        const perfMonitor = new PerformanceMonitor();
+        let totalUpdates = 0;
+        let activeAnimations = 0;
+
+        function updatePerformanceStats() {
+            const fps = perfMonitor.update();
+            document.getElementById('fps-value').textContent = fps;
+            document.getElementById('active-animations').textContent = activeAnimations;
+            document.getElementById('total-updates').textContent = totalUpdates;
+            requestAnimationFrame(updatePerformanceStats);
+        }
+        updatePerformanceStats();
+
+        // Demo 1: Spring vs Easing
+        const springAnimator = new AdvancedSmoothAnimator(document.getElementById('spring-price'), {
+            useSpring: true,
+            springConfig: { stiffness: 170, damping: 26, mass: 1 },
+            decimals: 0,
+            prefix: 'Rp ',
+            useGlow: true
+        });
+
+        const easingAnimator = new AdvancedSmoothAnimator(document.getElementById('easing-price'), {
+            useSpring: false,
+            easing: 'smoothCubic',
+            duration: 1000,
+            decimals: 0,
+            prefix: 'Rp ',
+            useGlow: true
+        });
+
+        function animateSpring() {
+            const newValue = Math.floor(Math.random() * 10000000) + 1000000;
+            springAnimator.animateTo(newValue);
+            activeAnimations++;
+            totalUpdates++;
+            setTimeout(() => activeAnimations--, 1000);
+        }
+
+        function animateEasing() {
+            const newValue = Math.floor(Math.random() * 10000000) + 1000000;
+            easingAnimator.animateTo(newValue);
+            activeAnimations++;
+            totalUpdates++;
+            setTimeout(() => activeAnimations--, 1000);
+        }
+
+        function animateBoth() {
+            animateSpring();
+            animateEasing();
+        }
+
+        // Demo 2: Spring Configuration
+        let currentStiffness = 170;
+        let currentDamping = 26;
+        let currentMass = 1;
+
+        const configAnimator = new AdvancedSmoothAnimator(document.getElementById('spring-config-price'), {
+            useSpring: true,
+            springConfig: { stiffness: currentStiffness, damping: currentDamping, mass: currentMass },
+            decimals: 0,
+            prefix: 'Rp ',
+            useGlow: true
+        });
+
+        function updateStiffness(value) {
+            currentStiffness = parseInt(value);
+            document.getElementById('stiffness-value').textContent = value;
+            configAnimator.updateSpringConfig({ stiffness: currentStiffness });
+        }
+
+        function updateDamping(value) {
+            currentDamping = parseInt(value);
+            document.getElementById('damping-value').textContent = value;
+            configAnimator.updateSpringConfig({ damping: currentDamping });
+        }
+
+        function updateMass(value) {
+            currentMass = parseFloat(value);
+            document.getElementById('mass-value').textContent = value;
+            configAnimator.updateSpringConfig({ mass: currentMass });
+        }
+
+        function testSpringConfig() {
+            const newValue = Math.floor(Math.random() * 20000000) + 1000000;
+            configAnimator.animateTo(newValue);
+            activeAnimations++;
+            totalUpdates++;
+            setTimeout(() => activeAnimations--, 2000);
+        }
+
+        function resetSpringConfig() {
+            document.getElementById('stiffness-slider').value = 170;
+            document.getElementById('damping-slider').value = 26;
+            document.getElementById('mass-slider').value = 1;
+            updateStiffness(170);
+            updateDamping(26);
+            updateMass(1);
+        }
+
+        // Demo 3: Live Stock Market
+        const stocks = {
+            bbca: { price: 9500, basePrice: 9500 },
+            btc: { price: 950000000, basePrice: 950000000 },
+            eth: { price: 52000000, basePrice: 52000000 }
+        };
+
+        const stockAnimators = {};
+        const cardAnimators = {};
+
+        ['bbca', 'btc', 'eth'].forEach(id => {
+            stockAnimators[id] = new AdvancedSmoothAnimator(document.getElementById(`price-${id}`), {
+                useSpring: true,
+                springConfig: { stiffness: 170, damping: 26, mass: 1 },
+                decimals: 0,
+                prefix: 'Rp ',
+                useGlow: true
+            });
+            
+            cardAnimators[id] = new AdvancedCardAnimator(document.getElementById(`card-${id}`), {
+                animationDuration: 1200,
+                scaleIntensity: 0.08,
+                glowIntensity: 25,
+                rotateIntensity: 2,
+                useParallax: true,
+                use3D: true
+            });
+        });
+
+        let liveInterval = null;
+
+        function startLiveMarket() {
+            document.getElementById('live-btn').style.display = 'none';
+            document.getElementById('stop-btn').style.display = 'inline-block';
+            
+            liveInterval = setInterval(() => {
+                ['bbca', 'btc', 'eth'].forEach(id => {
+                    const stock = stocks[id];
+                    const change = (Math.random() - 0.5) * 0.05;
+                    const newPrice = stock.price * (1 + change);
+                    
+                    stock.price = newPrice;
+                    stockAnimators[id].animateTo(newPrice);
+                    
+                    const changePercent = ((newPrice - stock.basePrice) / stock.basePrice * 100).toFixed(2);
+                    const changeElement = document.getElementById(`change-${id}`);
+                    changeElement.textContent = (changePercent >= 0 ? '+' : '') + changePercent + '%';
+                    changeElement.style.color = changePercent >= 0 ? '#10b981' : '#ef4444';
+                    
+                    if (change > 0) {
+                        cardAnimators[id].animateUp();
+                    } else {
+                        cardAnimators[id].animateDown();
+                    }
+
+                    activeAnimations++;
+                    totalUpdates++;
+                    setTimeout(() => activeAnimations--, 1200);
+                });
+            }, 2500);
+        }
+
+        function stopLiveMarket() {
+            clearInterval(liveInterval);
+            document.getElementById('live-btn').style.display = 'inline-block';
+            document.getElementById('stop-btn').style.display = 'none';
+        }
+
+        console.log('🚀 Advanced Smooth Animation Demo loaded!');
+        console.log('✅ Spring Physics enabled');
+        console.log('✅ GPU Acceleration enabled');
+        console.log('✅ Performance Monitor active');
+    </script>
+</body>
+</html>
