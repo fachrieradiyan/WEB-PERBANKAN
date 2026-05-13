@@ -1,279 +1,349 @@
 # 🏦 INVANKRI - Investasi & BANK NKRI
 
-![Version](https://img.shields.io/badge/version-2.0-blue.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+Platform Perbankan, Investasi Saham & Cryptocurrency Modern berbasis Web.
 
-**Platform Perbankan, Investasi Saham & Cryptocurrency Modern**
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://fachrieradiyan.github.io/WEB-PERBANKAN/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://github.com/fachrieradiyan/WEB-PERBANKAN)
 
 ---
 
-## 🎯 Tentang INVANKRI
+## 🌟 Features
 
-**INVANKRI** (Investasi & BANK NKRI) adalah platform perbankan dan investasi modern yang menggabungkan fitur banking, trading saham, dan cryptocurrency dalam satu aplikasi web yang powerful dan user-friendly.
+### 💰 Banking
+- **Deposit & Withdraw** - Setor dan tarik saldo dengan mudah
+- **Transaction History** - Riwayat transaksi lengkap
+- **Balance Management** - Kelola saldo dengan aman
+- **Multi-User Support** - Sistem login untuk banyak pengguna
 
-### 🌟 Fitur Utama
+### 📊 Stock Trading
+- **30+ Saham Indonesia** - BBCA, BBRI, TLKM, ASII, dan lainnya
+- **Live Price Updates** - Harga update real-time
+- **Buy & Sell** - Beli dan jual saham
+- **Portfolio Management** - Kelola portofolio saham
+- **Profit/Loss Tracking** - Lacak keuntungan/kerugian
 
-#### 💰 Banking
-- ✅ Setor & Tarik Saldo
-- ✅ Riwayat Transaksi Lengkap
-- ✅ Animasi Smooth dengan Spring Physics
-- ✅ Dark Mode Support
-- ✅ Multi-User System
+### 🪙 Cryptocurrency
+- **25+ Cryptocurrencies** - BTC, ETH, BNB, SOL, dan lainnya
+- **Live Price Updates** - Harga update real-time
+- **Buy & Sell** - Trading cryptocurrency
+- **Portfolio Management** - Kelola portofolio crypto
+- **Profit/Loss Tracking** - Lacak keuntungan/kerugian
 
-#### 📈 Investasi Saham
-- ✅ 33+ Saham Indonesia (BBCA, BBRI, TLKM, dll)
-- ✅ Real-time Price Updates
-- ✅ Portfolio Management
-- ✅ Profit/Loss Tracking
-- ✅ Live Chart dengan TradingView Style
-
-#### ₿ Cryptocurrency
-- ✅ 28+ Crypto (Bitcoin, Ethereum, Solana, dll)
-- ✅ Real-time Price Updates
-- ✅ Crypto Portfolio Management
-- ✅ Multiple Categories (DeFi, NFT, Meme Coins)
-- ✅ Live Price Charts
-
-#### ⭐ Priority Account
-- ✅ Auto-upgrade saat deposit >= Rp 100 Miliar
-- ✅ Badge Gold Eksklusif
-- ✅ Benefit Khusus Priority
-- ✅ Auto-refresh Profile Page
-
-#### 💾 Database & Persistence
-- ✅ Data tersimpan permanen (localStorage)
-- ✅ Auto-login dengan "Remember Me"
-- ✅ Multiple users dengan data terpisah
-- ✅ Tidak hilang saat refresh/tutup browser
+### 📈 Advanced Features
+- **Interactive Charts** - Grafik pergerakan harga
+- **Smooth Animations** - Spring physics engine
+- **Dark Mode** - Toggle light/dark theme
+- **Priority Account** - Gold badge untuk deposit 100M+
+- **Data Persistence** - LocalStorage untuk menyimpan data
+- **Responsive Design** - Mobile-friendly
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone Repository
-```bash
-git clone https://github.com/fachrieradiyan/WEB-PERBANKAN.git
-cd WEB-PERBANKAN
+### Demo Account
+```
+Username: dirut
+Password: dirut2026
+Role: Direktur Utama (VIP Account)
 ```
 
-### 2. Buka Aplikasi
-```bash
-# Buka index.html di browser
-# Atau gunakan live server
+### Local Development
+1. Clone repository:
+   ```bash
+   git clone https://github.com/fachrieradiyan/WEB-PERBANKAN.git
+   cd WEB-PERBANKAN
+   ```
+
+2. Open `index.html` in browser:
+   ```bash
+   # Windows
+   start index.html
+   
+   # Mac
+   open index.html
+   
+   # Linux
+   xdg-open index.html
+   ```
+
+3. Login dengan demo account atau register akun baru
+
+### Deployment
+Website ini sudah di-deploy di GitHub Pages:
 ```
-
-### 3. Login
-**Demo VIP Account:**
-- Username: `dirut`
-- Password: `dirut2026`
-
-**Atau Register Akun Baru:**
-- Klik tab "Daftar"
-- Isi username & password
-- Login dan mulai investasi!
+https://fachrieradiyan.github.io/WEB-PERBANKAN/
+```
 
 ---
 
-## 📊 Teknologi
+## 📋 Usage Guide
+
+### 1. Login/Register
+- **Login**: Gunakan demo account atau akun yang sudah terdaftar
+- **Register**: Buat akun baru dengan username dan password
+- **Remember Me**: Centang untuk tetap login
+
+### 2. Dashboard
+- **Deposit**: Masukkan jumlah dan klik "Setor Uang"
+- **Withdraw**: Masukkan jumlah dan klik "Tarik Uang"
+- **Balance**: Lihat saldo, total setoran, dan total penarikan
+
+### 3. Stock Trading
+- **Browse Stocks**: Lihat daftar 30+ saham Indonesia
+- **Buy Stock**: Klik "Beli", masukkan jumlah lot
+- **Sell Stock**: Klik "Jual" pada saham yang dimiliki
+- **Portfolio**: Lihat portofolio dan profit/loss
+
+### 4. Cryptocurrency
+- **Browse Crypto**: Lihat daftar 25+ cryptocurrency
+- **Buy Crypto**: Klik "Beli", masukkan jumlah
+- **Sell Crypto**: Klik "Jual" pada crypto yang dimiliki
+- **Portfolio**: Lihat portofolio dan profit/loss
+
+### 5. Charts
+- **Select Asset**: Pilih saham atau crypto
+- **View Chart**: Lihat grafik pergerakan harga
+- **Price Info**: Current, High, Low, Change %
+
+### 6. Profile
+- **User Info**: Lihat informasi akun
+- **Statistics**: Total transaksi, investasi, dll
+- **Priority Account**: Badge gold untuk deposit 100M+
+- **Edit Name**: Ubah display name
+
+---
+
+## 💎 Priority Account
+
+### Auto-Upgrade
+Akun otomatis upgrade ke **Priority Account** saat:
+- Total deposit mencapai **Rp 100 Miliar** atau lebih
+
+### Benefits
+- ⭐ **Gold Badge** - Badge priority berwarna gold
+- 🎯 **Prioritas Layanan** - Customer service prioritas
+- 💎 **Fitur Eksklusif** - Akses fitur khusus
+- 🚀 **Limit Lebih Tinggi** - Transaksi tanpa batas
+
+### Notification
+- Modal notifikasi muncul saat upgrade
+- Badge gold otomatis muncul di header
+- Halaman profil auto-refresh
+- 4 benefit cards di halaman profil
+
+---
+
+## 🎨 Technology Stack
 
 ### Frontend
-- **HTML5** - Struktur aplikasi
-- **Tailwind CSS** - Styling modern & responsive
-- **JavaScript (ES6+)** - Logic & interactivity
+- **HTML5** - Structure
+- **Tailwind CSS** - Styling (CDN)
+- **JavaScript (ES6+)** - Logic
+- **Font Awesome** - Icons (CDN)
+
+### Animation
 - **Spring Physics Engine** - Smooth animations
+- **60 FPS Performance** - GPU acceleration
+- **Custom Easing Functions** - Natural movements
 
 ### Storage
-- **localStorage** - Client-side database
-- **Session Management** - Auto-login system
+- **LocalStorage** - Client-side data persistence
+- **JSON** - Data format
+- **Multi-User Support** - Separate data per user
 
-### Libraries
-- **Font Awesome** - Icons
-- **Tailwind CSS CDN** - Styling framework
-
----
-
-## 🎨 Fitur Animasi
-
-### Advanced Smooth Animation System
-- ✅ Spring Physics Engine
-- ✅ 60 FPS Performance
-- ✅ GPU Acceleration
-- ✅ 7+ Easing Functions
-- ✅ Customizable Parameters
-
-**Animasi untuk:**
-- Saldo (Balance)
-- Total Setor (Total Deposit)
-- Total Tarik (Total Withdraw)
-- Harga Saham (Stock Prices)
-- Harga Crypto (Crypto Prices)
+### Deployment
+- **GitHub Pages** - Static hosting
+- **Git** - Version control
+- **No Backend Required** - Fully client-side
 
 ---
 
-## 📱 Screenshots
+## 📁 Project Structure
 
-### Dashboard
-![Dashboard](https://via.placeholder.com/800x400?text=INVANKRI+Dashboard)
-
-### Saham Trading
-![Stocks](https://via.placeholder.com/800x400?text=Saham+Trading)
-
-### Cryptocurrency
-![Crypto](https://via.placeholder.com/800x400?text=Cryptocurrency)
-
-### Priority Account
-![Priority](https://via.placeholder.com/800x400?text=Priority+Account)
-
----
-
-## 📖 Dokumentasi
-
-### Core Documentation
-- 📄 [DATABASE_PERSISTENCE.md](DATABASE_PERSISTENCE.md) - Sistem database & auto-login
-- 📄 [PRIORITY_PROFILE_UPDATE.md](PRIORITY_PROFILE_UPDATE.md) - Fitur Priority Account
-- 📄 [RINGKASAN_FITUR_PRIORITY.md](RINGKASAN_FITUR_PRIORITY.md) - Ringkasan Priority
-- 📄 [INDEX_PRIORITY_DOCS.md](INDEX_PRIORITY_DOCS.md) - Index dokumentasi Priority
-
-### Animation Documentation
-- 📄 [INDEX_ANIMASI.md](INDEX_ANIMASI.md) - Index sistem animasi
-- 📄 [ANIMATION_SUMMARY.md](ANIMATION_SUMMARY.md) - Ringkasan animasi
-- 📄 [ADVANCED_ANIMATION_GUIDE.md](ADVANCED_ANIMATION_GUIDE.md) - Panduan advanced
-
-### Testing Guides
-- 🧪 [TEST_PROFILE_AUTO_UPDATE.html](TEST_PROFILE_AUTO_UPDATE.html) - Test Priority feature
-- 🧪 [TEST_DATABASE_PERSISTENCE.html](TEST_DATABASE_PERSISTENCE.html) - Test database
-- 🧪 [test-animation-system.html](test-animation-system.html) - Test animasi
-
----
-
-## 🎯 Cara Mendapatkan Priority Account
-
-### Syarat:
-**Total Setoran >= Rp 100.000.000.000 (100 Miliar)**
-
-### Benefit Priority:
-1. ⭐ **Badge Gold** - Badge eksklusif berwarna gold
-2. 🎯 **Prioritas CS** - Layanan customer service prioritas
-3. 💎 **Fitur Eksklusif** - Akses fitur khusus Priority
-4. 🚀 **Limit Tinggi** - Limit transaksi lebih tinggi
-
-### Cara Upgrade:
-1. Login ke akun Anda
-2. Setor uang hingga total >= Rp 100 Miliar
-3. Otomatis upgrade ke Priority! 🎉
-4. Badge Gold muncul di header & profil
-5. Section Priority Account Info muncul di profil
-
----
-
-## 🔐 Keamanan
-
-### Current Implementation:
-- ✅ Password validation (min 6 karakter)
-- ✅ Username validation (min 3 karakter)
-- ✅ Session management
-- ✅ Data isolation per user
-- ✅ Clean logout
-
-### ⚠️ Catatan:
-> Ini adalah aplikasi demo/prototype. Untuk production:
-> - Gunakan backend server (Node.js, PHP, dll)
-> - Encrypt password dengan bcrypt
-> - Implementasi JWT authentication
-> - Gunakan database (MySQL, MongoDB, dll)
-> - Setup HTTPS/SSL
-
----
-
-## 🌐 Browser Support
-
-| Browser | Version | Status |
-|---------|---------|--------|
-| Chrome | Latest | ✅ Supported |
-| Firefox | Latest | ✅ Supported |
-| Safari | Latest | ✅ Supported |
-| Edge | Latest | ✅ Supported |
-| Opera | Latest | ✅ Supported |
-
----
-
-## 📊 Statistik
-
-### Code Stats:
-- **Total Files:** 50+
-- **Total Lines:** 19,910+
-- **JavaScript:** ~2,500 lines
-- **HTML:** ~1,000 lines
-- **Documentation:** 9 files
-
-### Features:
-- **Saham:** 33 emiten
-- **Crypto:** 28 coins
-- **Animations:** 7+ easing functions
-- **Users:** Unlimited (localStorage)
-
----
-
-## 🛠️ Development
-
-### File Structure:
 ```
-INVANKRI/
-├── index.html                          # Main application
-├── main.js                             # Core logic
-├── main-with-animation.js              # Animation version
-│
+WEB-PERBANKAN/
 ├── js/
-│   ├── advanced-smooth-animation.js    # Animation engine
+│   ├── advanced-smooth-animation.js    # Spring physics engine
 │   ├── advanced-animations.css         # Animation styles
-│   ├── ReactAdvancedAnimation.jsx      # React components
+│   ├── smooth-price-updater.js         # Price animations
+│   ├── smooth-animations.css           # Smooth styles
+│   ├── ReactAdvancedAnimation.jsx      # React component
 │   ├── NextJsAdvancedExample.tsx       # Next.js example
-│   └── ...
-│
-├── docs/
-│   ├── DATABASE_PERSISTENCE.md
-│   ├── PRIORITY_PROFILE_UPDATE.md
-│   ├── INDEX_ANIMASI.md
-│   └── ...
-│
-└── tests/
-    ├── TEST_PROFILE_AUTO_UPDATE.html
-    ├── TEST_DATABASE_PERSISTENCE.html
-    └── test-animation-system.html
-```
-
-### Local Development:
-```bash
-# Clone repository
-git clone https://github.com/fachrieradiyan/WEB-PERBANKAN.git
-
-# Open in browser
-# Atau gunakan live server (VS Code extension)
+│   └── README.md                       # Animation docs
+├── .nojekyll                           # GitHub Pages config
+├── index.html                          # Main website
+├── main.js                             # Application logic
+└── README.md                           # This file
 ```
 
 ---
 
-## 🤝 Contributing
+## 🔧 Configuration
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### VIP Accounts
+Edit `main.js` untuk menambah VIP account:
+```javascript
+const VIP_ACCOUNTS = {
+    'username': {
+        password: 'password',
+        name: 'Display Name',
+        isVIP: true
+    }
+};
+```
 
-### Steps:
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Stock List
+Edit `main.js` untuk menambah saham:
+```javascript
+stocks.push({
+    id: 'CODE',
+    name: 'Company Name',
+    price: 1000,
+    basePrice: 1000,
+    owned: 0,
+    sector: 'Sector'
+});
+```
+
+### Crypto List
+Edit `main.js` untuk menambah cryptocurrency:
+```javascript
+cryptos.push({
+    id: 'SYMBOL',
+    name: 'Crypto Name',
+    symbol: 'SYM',
+    price: 1000000,
+    basePrice: 1000000,
+    owned: 0,
+    category: 'Category',
+    icon: '🔷'
+});
+```
 
 ---
 
-## 📝 License
+## 🐛 Troubleshooting
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Login Button Tidak Berfungsi
+1. Clear browser cache (Ctrl+Shift+R)
+2. Check browser console (F12) untuk errors
+3. Pastikan JavaScript enabled
+4. Try incognito/private mode
+
+### Data Hilang Setelah Refresh
+1. Check localStorage enabled di browser
+2. Pastikan "Remember Me" dicentang saat login
+3. Jangan clear browser data/cookies
+
+### Animasi Tidak Smooth
+1. Check browser console untuk errors
+2. Pastikan `js/advanced-smooth-animation.js` loaded
+3. Try disable browser extensions
+4. Update browser ke versi terbaru
+
+### GitHub Pages 404
+1. Buka Settings → Pages di GitHub
+2. Set Source: "Deploy from a branch"
+3. Set Branch: "main" + "/ (root)"
+4. Klik "Save"
+5. Tunggu 2-5 menit untuk build
 
 ---
 
-## 👨‍💻 Author
+## 📊 Performance
+
+### Load Time
+- Initial load: < 2 seconds
+- Page switch: < 100ms
+- Animation: 60 FPS
+
+### File Sizes
+- index.html: ~66 KB
+- main.js: ~112 KB
+- animations.js: ~16 KB
+- **Total: ~194 KB**
+
+### Browser Support
+- ✅ Chrome 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ Edge 90+
+- ✅ Mobile browsers
+
+---
+
+## 🔐 Security
+
+### Client-Side Only
+- No backend server required
+- No API calls to external services
+- All data stored locally in browser
+
+### Data Privacy
+- Data never leaves user's browser
+- No tracking or analytics
+- No cookies (except localStorage)
+
+### Best Practices
+- Passwords stored in localStorage (demo only)
+- For production: use proper authentication
+- For production: use HTTPS
+- For production: implement backend
+
+---
+
+## 🚀 Deployment Guide
+
+### GitHub Pages (Current)
+1. Push code to GitHub
+2. Go to Settings → Pages
+3. Set Source: "Deploy from a branch"
+4. Set Branch: "main" + "/ (root)"
+5. Click "Save"
+6. Wait 2-5 minutes
+7. Access at: `https://username.github.io/repository/`
+
+### Other Platforms
+- **Netlify**: Drag & drop folder
+- **Vercel**: Import from GitHub
+- **Cloudflare Pages**: Connect repository
+- **Any Static Host**: Upload files
+
+---
+
+## 📝 Development
+
+### Adding Features
+1. Edit `main.js` for logic
+2. Edit `index.html` for UI
+3. Test locally
+4. Commit and push
+5. Wait for deployment
+
+### Testing
+1. Open `index.html` in browser
+2. Open console (F12)
+3. Test all features
+4. Check for errors
+5. Test on mobile
+
+### Contributing
+1. Fork repository
+2. Create feature branch
+3. Make changes
+4. Test thoroughly
+5. Submit pull request
+
+---
+
+## 📜 License
+
+This project is open source and available for educational purposes.
+
+---
+
+## 👤 Author
 
 **Fachrie Radiyan**
 - GitHub: [@fachrieradiyan](https://github.com/fachrieradiyan)
@@ -283,72 +353,66 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Tailwind CSS** - For the amazing CSS framework
-- **Font Awesome** - For the beautiful icons
-- **Spring Physics** - For smooth animations
-- **localStorage API** - For client-side storage
+- Tailwind CSS for styling framework
+- Font Awesome for icons
+- GitHub Pages for hosting
+- Spring physics for smooth animations
 
 ---
 
 ## 📞 Support
 
-Jika ada pertanyaan atau issue:
-1. Buka [Issues](https://github.com/fachrieradiyan/WEB-PERBANKAN/issues)
-2. Baca dokumentasi di folder `docs/`
-3. Check testing guides di folder `tests/`
+### Issues
+Report bugs or request features:
+- GitHub Issues: [Create Issue](https://github.com/fachrieradiyan/WEB-PERBANKAN/issues)
+
+### Questions
+- Check this README first
+- Check browser console for errors
+- Try clearing cache and cookies
 
 ---
 
-## 🎉 Changelog
+## 🎯 Roadmap
 
-### Version 2.0 (Latest)
-- ✅ Database persistence dengan localStorage
-- ✅ Auto-login dengan "Remember Me"
-- ✅ Priority Account dengan auto-upgrade
-- ✅ Auto-refresh profile page
-- ✅ Complete user data structure
-- ✅ Last login tracking
-
-### Version 1.0
-- ✅ Basic banking features
+### Current Version: 2.0
+- ✅ Banking features
 - ✅ Stock trading
-- ✅ Cryptocurrency trading
-- ✅ Smooth animations
+- ✅ Cryptocurrency
+- ✅ Charts
+- ✅ Priority account
 - ✅ Dark mode
-- ✅ Responsive design
 
----
-
-## 🚀 Roadmap
-
-### Future Features:
-- [ ] Backend API (Node.js/PHP)
-- [ ] Real database (MySQL/MongoDB)
-- [ ] Real-time WebSocket updates
-- [ ] Mobile app (React Native)
+### Future Plans
+- [ ] Backend integration
+- [ ] Real-time data from APIs
+- [ ] Multi-language support
+- [ ] PWA features
+- [ ] Advanced analytics
 - [ ] Email notifications
-- [ ] 2FA Authentication
-- [ ] KYC Verification
-- [ ] Payment gateway integration
+- [ ] Two-factor authentication
 
 ---
 
-## ⭐ Star History
+## 📸 Screenshots
 
-If you like this project, please give it a ⭐ on GitHub!
+### Dashboard
+![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
+
+### Stock Trading
+![Stocks](https://via.placeholder.com/800x400?text=Stock+Trading+Screenshot)
+
+### Cryptocurrency
+![Crypto](https://via.placeholder.com/800x400?text=Cryptocurrency+Screenshot)
 
 ---
 
-<div align="center">
+## ⭐ Star This Repository
 
-**🏦 INVANKRI - Investasi & BANK NKRI**
+If you find this project useful, please give it a star! ⭐
 
-*Platform Perbankan, Investasi Saham & Cryptocurrency Modern*
+---
 
-**Made with ❤️ in Indonesia 🇮🇩**
+**Made with ❤️ by Fachrie Radiyan**
 
-© 2026 INVANKRI. All rights reserved.
-
-[⬆ Back to Top](#-invankri---investasi--bank-nkri)
-
-</div>
+**INVANKRI - Investasi & BANK NKRI** 🏦
