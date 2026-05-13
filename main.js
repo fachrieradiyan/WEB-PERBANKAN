@@ -1,3 +1,8 @@
+// INVANKRI - Main Application Script
+// Marker to indicate this script loaded successfully
+window.mainJsLoaded = true;
+console.log('✅ main.js loaded successfully');
+
 // Bank Account State
 let balance = 0;
 let totalDeposit = 0;

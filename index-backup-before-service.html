@@ -989,28 +989,7 @@
     <script src="js/advanced-smooth-animation.js" onerror="console.warn('Animation script not loaded, using fallback')"></script>
     
     <!-- Load main script -->
-    <script src="main.js" onerror="console.warn('main.js not loaded, using inline fallback')"></script>
-    
-    <!-- INLINE FALLBACK: Complete application logic -->
-    <script>
-    // This inline script ensures ALL features work even if main.js fails to load
-    
-    (function() {
-        'use strict';
-        
-        // Check if main.js already loaded
-        if (typeof window.mainJsLoaded !== 'undefined') {
-            console.log('✅ main.js loaded successfully, skipping inline fallback');
-            return;
-        }
-        
-        console.log('⚠️ main.js not loaded, using inline fallback');
-        
-        // Include complete main.js content inline
-        // This is automatically generated from main.js
-        
-    })();
-    </script>
+    <script src="main.js"></script>
     
     <!-- Fallback: Ensure page works without animation -->
     <script>
